@@ -1,5 +1,5 @@
 <footer>
-    <div>
+    <div class="subfooter">
         <p>El Buen precio <span>Zapateria</span></p>
         <h4>Atencion al cliente</h3>
             <p>Lunes a Viernes de 9:00am a 7:00pm</p>
@@ -13,7 +13,7 @@
                 <a href=""><i class="fa-solid fa-at"></i></a>
             </div>
     </div>
-    <div>
+    <div class="footer">
         <p>Zapateria Buen Precio - Todos los derechos reservados: @2024</p>
     </div>
 </footer>

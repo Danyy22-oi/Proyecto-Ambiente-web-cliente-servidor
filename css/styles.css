@@ -1,0 +1,105 @@
+* {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+  }
+
+#menu {
+	background: #FFFF;
+	height: 80px;
+	border-radius: 0px;
+}
+#menu ul, #menu li {
+	margin: 0 auto;
+	padding: 0;
+	list-style: none
+}
+#menu ul {
+	width: 100%;
+	text-align: left;
+}
+#menu li {
+	display: inline-block;
+	position: relative;
+    margin-right: 30px;
+}
+#menu a {
+	display: block;
+	line-height: 80px;
+	padding: 0 14px;
+	text-decoration: none;
+	color: #000;
+	font-size: 24px;
+}
+
+#menu li a:hover {
+	color: #048088;
+}
+
+#menu input {
+	display: none;
+	margin: 0;
+	padding: 0;
+	height: 80px;
+	width: 100%;
+	opacity: 0;
+	cursor: pointer
+}
+#menu label {
+	display: none;
+	line-height: 80px;
+	text-align: left;
+	position: absolute;
+	left: 35px
+}
+#menu label:before {
+	font-size: 1.6em;
+	color: #FFFF;
+	content: "\2261"; 
+	margin-left: 20px;
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    margin-top: 10px;
+}
+
+.banner {
+    margin-top: 10px;
+    width: 100%;
+    height:auto;
+    background-color: #048088;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner h1 {
+    color: white;
+    text-align: center;
+}
+
+@media screen and (max-width: 1150px) {
+    .banner {
+        margin-top: 90px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .banner {
+        margin-top: 180px;
+    }
+}
+
+.footer{
+	width: 100%;
+	background-color: #048088;
+	text-align: center;
+	color:#FFFF;
+	padding: 1rem 0;
+}
+
+.subfooter{
+	width: 100%;
+	background-color: #D9D9D9;
+}

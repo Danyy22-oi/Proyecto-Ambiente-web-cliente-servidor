@@ -60,15 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <main>
-    <div>
-        <h1>
-            Registro
-        </h1>
+    <div class="banner">
+        <h1>Registro</h1>
     </div>
     <ul>
         <?php
         foreach ($errores as $error) : ?>
-            <li class='error' style="color: red;"><?php echo $error; ?></li>
+        <li class='error' style="color: red;"><?php echo $error; ?></li>
         <?php
         endforeach;
         ?>
@@ -95,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 INICIAR SESION
             </button>
         </form>
-        <p>Ya tienes una Cuenta? Inicia Sesion <span><a href="">Aqui</a></span></p>
+        <p>Ya tienes una Cuenta? Inicia Sesion <span><a href="login.php">Aqui</a></span></p>
     </div>
 
 </main>
