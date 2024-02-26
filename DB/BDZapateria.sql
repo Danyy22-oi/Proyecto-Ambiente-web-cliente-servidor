@@ -11,6 +11,8 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+use zapateriaProyecto;
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -167,14 +169,14 @@ ALTER TABLE `categorias`
 --
 -- Indices de la tabla `facturas`
 --
-ALTER TABLE `facturas`
+  ALTER TABLE `facturas`
   ADD PRIMARY KEY (`Id_Factura`),
   ADD KEY `FK_Facturas_Productos` (`Id_Producto`);
 
 --
 -- Indices de la tabla `productos`
 --
-ALTER TABLE `productos`
+  ALTER TABLE `productos`
   ADD PRIMARY KEY (`Id_Producto`),
   ADD KEY `FK_Productos_Categoria` (`Id_Categoria`),
   ADD KEY `FK_Productos_Proveedor` (`Id_Proveedor`);
@@ -182,20 +184,20 @@ ALTER TABLE `productos`
 --
 -- Indices de la tabla `proveedores`
 --
-ALTER TABLE `proveedores`
-  ADD PRIMARY KEY (`Id_Proveedor`);
+  ALTER TABLE `proveedores`
+  ADD PRIMARY KEY (`Id_Proveedor`);;
 
 --
 -- Indices de la tabla `roles`
 --
-ALTER TABLE `roles`
+  ALTER TABLE `roles`
   ADD PRIMARY KEY (`Id_Rol`);
 
 --
 -- Indices de la tabla `usuarios`
 --
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`Id_Usuario`),
+  ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_Usuario`),
   ADD KEY `FK_Usuarios_Rol` (`Id_Rol`);
 
 --
@@ -205,43 +207,43 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT de la tabla `carrito`
 --
-ALTER TABLE `carrito`
+  ALTER TABLE `carrito`
   MODIFY `Id_Carrito` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
-ALTER TABLE `categorias`
+  ALTER TABLE `categorias`
   MODIFY `Id_Categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `facturas`
 --
-ALTER TABLE `facturas`
+  ALTER TABLE `facturas`
   MODIFY `Id_Factura` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
-ALTER TABLE `productos`
+  ALTER TABLE `productos`
   MODIFY `Id_Producto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
-ALTER TABLE `proveedores`
+ ALTER TABLE `proveedores`
   MODIFY `Id_Proveedor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
-ALTER TABLE `roles`
+  ALTER TABLE `roles`
   MODIFY `Id_Rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
-ALTER TABLE `usuarios`
+  ALTER TABLE `usuario`
   MODIFY `Id_Usuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -251,14 +253,14 @@ ALTER TABLE `usuarios`
 --
 -- Filtros para la tabla `carrito`
 --
-ALTER TABLE `carrito`
-  ADD CONSTRAINT `FK_Carrito_Producto` FOREIGN KEY (`Id_Producto`) REFERENCES `productos` (`Id_Producto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_Carrito_Usuario` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuarios` (`Id_Usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ALTER TABLE `carrito`
+  ADD CONSTRAINT `FK_Carrito_Usuario` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id_Usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_Carrito_Producto` FOREIGN KEY (`Id_Producto`) REFERENCES `productos` (`Id_Producto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `facturas`
 --
-ALTER TABLE `facturas`
+  ALTER TABLE `facturas`
   ADD CONSTRAINT `FK_Facturas_Productos` FOREIGN KEY (`Id_Producto`) REFERENCES `productos` (`Id_Producto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -271,10 +273,30 @@ ALTER TABLE `productos`
 --
 -- Filtros para la tabla `usuarios`
 --
-ALTER TABLE `usuarios`
+  ALTER TABLE `usuario`
   ADD CONSTRAINT `FK_Usuarios_Rol` FOREIGN KEY (`Id_Rol`) REFERENCES `roles` (`Id_Rol`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+/* Creacion de tabla para zapatos hombres */
+
+create table zapateriaproyecto.hombre (
+id_hombre INT NOT NULL AUTO_INCREMENT,
+marca varchar (80) not null,
+descripcion varchar (80) not null,
+talla varchar(25) NOT NULL,
+precio double NOT NULL,
+imagen varchar(255) not null,
+PRIMARY KEY (id_hombre)
+);
+
+/*Agregado de datos a tabla hombres */
+
+insert into zapateriaproyecto.hombre(marca,descripcion,talla,precio,imagen)
+values ('Nike','Stefan Janoski Premium Crystal Mint', '38-45', 60000, 'https://1.bp.blogspot.com/-93klQNnC1EI/VF5aNEudorI/AAAAAAAAEhE/FQrwvTfaB0c/s1600/janoski-premium.jpg');
+insert into zapateriaproyecto.hombre(marca,descripcion,talla,precio,imagen)
+values ('Adidas','Bad Bunny Forum First Coffee','38-45',85000,'https://sendsneakers.mx/cdn/shop/products/adidas-Forum-Low-Bad-Bunny-Product.webp?v=1672957994&width=1946');
