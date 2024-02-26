@@ -1,5 +1,5 @@
 <?php
-include "include/templates/header.php";
+include_once "include/templates/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -7,14 +7,12 @@ include "include/templates/header.php";
 
 <main>
     <?php
-    include 'include/templates/filtrosBusqueda.php';
     include 'include/templates/zapatosMujer.php';
-
     ?>
 </main>
 
 <?php
-include "include/templates/footer.phpp";
+include_once "include/templates/footer.php";
 ?>
 
 </html>

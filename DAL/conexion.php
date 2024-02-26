@@ -14,8 +14,6 @@ function conectarDb(){
     return $conexion;
 }
 
-// var_dump(conectarDb());
-
 function  Desconectar($conexion){
     mysqli_close($conexion);
 }

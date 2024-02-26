@@ -58,6 +58,10 @@
 	margin-left: 20px;
 }
 
+#menu ul li a.active {
+    color: #048088;
+}
+
 .logo {
     width: 200px;
     height: auto;
@@ -102,4 +106,19 @@
 .subfooter{
 	width: 100%;
 	background-color: #D9D9D9;
+}
+
+th.max,
+td.max {
+    max-width: 150px;
+}
+
+.card-img-top {
+    max-width: 600px;
+    height: 300px;
+}
+
+table img {
+    max-width: 200px;
+    height: auto; 
 }

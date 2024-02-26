@@ -1,50 +1,32 @@
+<?php
+include_once 'include/templates/header.php';
+require_once "DAL/productosCrud.php";
 
+$elSQL = "SELECT * FROM productos";
+$productos = getArray($elSQL);
+?>
 
-    <div class="contenedor_Zapatos">
-        <div class="card">
-            <img src="imagen.jpg" alt="Zapato">
-            <div class="card-content">
-                <h2>Categoría: Calzado Deportivo</h2>
-                <h3>Nombre: Zapato Deportivo XYZ</h3>
-                <p>Precio: $99.99</p>
-                <p>Color: Azul</p>
+<div class="container">
+
+    <h1 class="my-4">Zapatos de mujer</h1>
+
+    <div class="row">
+        <?php foreach ($productos as $producto): ?>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="<?= $producto['Imagen'] ?>" alt="<?= $producto['Nombre'] ?>"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a><?= $producto['Nombre'] ?></a>
+                        </h4>
+                        <p class="card-text"><?= $producto['Descripcion'] ?></p>
+                        <hr>
+                        <p class="card-text">Precio: ₡<?= $producto['Precio'] ?></p>
+                        <hr>
+                        <p class="card-text">Talla: <?= $producto['Talla'] ?></p>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-            <img src="imagen.jpg" alt="Zapato">
-            <div class="card-content">
-                <h2>Categoría: Calzado Deportivo</h2>
-                <h3>Nombre: Zapato Deportivo XYZ</h3>
-                <p>Precio: $99.99</p>
-                <p>Color: Azul</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="imagen.jpg" alt="Zapato">
-            <div class="card-content">
-                <h2>Categoría: Calzado Deportivo</h2>
-                <h3>Nombre: Zapato Deportivo XYZ</h3>
-                <p>Precio: $99.99</p>
-                <p>Color: Azul</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="imagen.jpg" alt="Zapato">
-            <div class="card-content">
-                <h2>Categoría: Calzado Deportivo</h2>
-                <h3>Nombre: Zapato Deportivo XYZ</h3>
-                <p>Precio: $99.99</p>
-                <p>Color: Azul</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="imagen.jpg" alt="Zapato">
-            <div class="card-content">
-                <h2>Categoría: Calzado Deportivo</h2>
-                <h3>Nombre: Zapato Deportivo XYZ</h3>
-                <p>Precio: $99.99</p>
-                <p>Color: Azul</p>
-            </div>
-        </div>
-        </div>
+        <?php endforeach; ?>
     </div>
-
+</div>
