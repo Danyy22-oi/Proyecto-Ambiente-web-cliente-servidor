@@ -19,11 +19,12 @@
         <nav id='menu'>
             <ul>
                 <li><a href='index.php'><img src='img/Logo.png' alt='Logo Zapateria' class="logo"></a></li>
-                <li><a href='index.php'>Inicio</a></li>
-                <li><a href='productos.php'>Productos</a></li>
                 <li><a href='hombre.php'>Hombre</a></li>
                 <li><a href='mujer.php'>Mujer</a></li>
-                <li><a href='compra.php'>Compra</a></li>
+                <li><a href='accesorios.php'>Accesorios</a></li>
+                <li><a href='proveedores.php'>Proveedores</a></li>
+                <li><a href='compra.php'>Carrito</a></li>
+                <li><a href='productos.php'>Productos</a></li>
                 <li><a href='registro.php'>Inicia Sesión</a></li>
             </ul>
         </nav>

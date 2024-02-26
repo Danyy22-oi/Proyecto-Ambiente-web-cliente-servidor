@@ -4,10 +4,31 @@ require_once "DAL/productosCrud.php";
 
 $elSQL = "SELECT * FROM productos";
 $productos = getArray($elSQL);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_POST['action'] == 'eliminar_producto') {
+        if(isset($_POST['id'])) {
+            $id = $_POST['id'];
+            if (EliminarProducto($id)) {
+                header("Location: productos.php");                
+            } else {
+                echo "<div class='alert alert-danger' role='alert'>Error al eliminar el producto.</div>";
+            }
+        } else {
+            echo "<div class='alert alert-danger' role='alert'>ID de producto no recibido.</div>";
+        }
+    }
+}
+
 ?>
 
 <main>
     <div class="container">
+        <div style="float: right;">
+            <a href="agregarproducto.php">
+                <button type="button" class="btn btn-success color-boton">Añadir Producto</button>
+            </a>
+        </div>
         <h2>Productos</h2>
         <?php if (!empty($productos)): ?>
         <table class="table">
@@ -29,7 +50,6 @@ $productos = getArray($elSQL);
                     <td><?= $producto['Nombre'] ?></td>
                     <td>
                         <?php
-                                // Traducción del valor de 'Id_Categoria' a texto
                                 $categoria = '';
                                 switch ($producto['Id_Categoria']) {
                                     case 1:
@@ -51,9 +71,16 @@ $productos = getArray($elSQL);
                     <td><img src="<?= $producto['Imagen'] ?>" alt="<?= $producto['Nombre'] ?>"></td>
                     <td><?= $producto['Talla'] ?></td>
                     <td>
-                        <a href="#" class="btn btn-success mr-1"><i class="fas fa-add"></i></a>
-                        <a href="#" class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                        <a href="actualizarproducto.php?id=<?= $producto['Id_Producto'] ?>"
+                            class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
+                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" style="display: inline;">
+                            <input type="hidden" name="id" value="<?= $producto['Id_Producto'] ?>">
+                            <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('¿Está seguro de que desea eliminar este producto?');">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <input type="hidden" name="action" value="eliminar_producto">
+                        </form>
                     </td>
                 </tr>
                 <?php endforeach; ?>

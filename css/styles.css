@@ -104,6 +104,7 @@
 }
 
 .subfooter{
+	margin-top: 20px;
 	width: 100%;
 	background-color: #D9D9D9;
 }
@@ -121,4 +122,12 @@ td.max {
 table img {
     max-width: 200px;
     height: auto; 
+}
+
+.color-boton {
+    background-color: #048088;
+}
+
+.color-boton:hover{
+	background-color: #048088;
 }

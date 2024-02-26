@@ -2,7 +2,7 @@
 include_once 'include/templates/header.php';
 require_once "DAL/productosCrud.php";
 
-$elSQL = "SELECT * FROM productos";
+$elSQL = "SELECT * FROM productos WHERE Id_Categoria = '2'";
 $productos = getArray($elSQL);
 ?>
 
