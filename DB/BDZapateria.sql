@@ -166,7 +166,17 @@ CREATE TABLE `usuario` (
   `id_rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
+
+
+
+--------------------------------------------------ESTRUCTURA DE TABLA PARA ACCESORIOS-------------------------------------------------------------
+
+
+
+
+
+
+
 -- Índices para tablas volcadas
 --
 
@@ -313,6 +323,10 @@ ALTER TABLE `productos`
 ALTER TABLE `usuario`
   ADD CONSTRAINT `FK_ROL_USUARIO` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`);
 COMMIT;
+
+
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
