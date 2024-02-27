@@ -129,7 +129,8 @@ CREATE TABLE `proveedores` (
 
 INSERT INTO `proveedores` (`Id_Proveedor`, `Nombre`, `Logo`) VALUES
 (1, 'Calzados Emme', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXNezspNVM_wSkMqMtdeblXx7EU4u5UNUgaXdz0qxL9w&s');
-
+INSERT INTO `proveedores` (`Nombre`, `Logo`) VALUES
+('Del Barco','https://delbarcocr.com/wp-content/uploads/2021/04/22008407_10155622816057591_4524919913745197678_n-3.jpg');
 -- --------------------------------------------------------
 
 --
