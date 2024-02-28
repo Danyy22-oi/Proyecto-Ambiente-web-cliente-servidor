@@ -30,20 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </a>
         </div>
 <div>
-        <div class="container">
-        <div style="float: right;">
-            <a href="eliminarSubCategoria.php">
-                <button type="button" class="btn btn-success color-boton">Eliminar Sub Categoria</button>
-            </a>
-        </div>
-</div>
+      
 <div>
-        <div class="container">
-        <div style="float: right;">
-            <a href="actualizarSubCategoria.php">
-                <button type="button" class="btn btn-success color-boton">Actualizar sub categoria</button>
-            </a>
-        </div>
+     
 </div>
         <h2>Sub categorias</h2>
         <?php if (!empty($subCategorias)): ?>
@@ -61,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <tr>
                     <td><?= $subCategoria['id_SubCategoria'] ?></td>
                     <td><?= $subCategoria['nombre'] ?></td>
-                    <td><?= $subCategoria['id_Producto'] ?></td>
+                    <td><?= isset($subCategoria['id_Producto']) ? $subCategoria['id_Producto'] : 'Valor no definido' ?></td>
+
                     <td>
                         <a href="actualizarSubCategoria.php?id=<?= $subCategoria['id_SubCategoria'] ?>"
                             class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
