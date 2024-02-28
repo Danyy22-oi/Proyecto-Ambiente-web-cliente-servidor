@@ -5,8 +5,9 @@
 
 #menu {
 	background: #FFFF;
-	height: 80px;
+	height: 70px;
 	border-radius: 0px;
+	
 }
 #menu ul, #menu li {
 	margin: 0 auto;
@@ -28,7 +29,7 @@
 	padding: 0 14px;
 	text-decoration: none;
 	color: #000;
-	font-size: 24px;
+	font-size: 20px;
 }
 
 #menu li a:hover {
@@ -63,7 +64,7 @@
 }
 
 .logo {
-    width: 200px;
+    width: 180px;
     height: auto;
     margin-top: 10px;
 }

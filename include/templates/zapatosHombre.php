@@ -1,14 +1,15 @@
 
 <?php
 $login = false;
-require_once "../include/functions/recoge.php";
+require_once "DAL/hombreCrud.php";
+require_once "include/functions/recoge.php";
 $ingreso = recogeGet("ingreso");
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 ?>
 
 <?php
-    require_once "../DAL/hombreCrud.php";
+    require_once "DAL/hombreCrud.php";
     $elSQL = "select id_hombre, marca, descripcion, talla, precio, imagen from hombre";
     $myArray = getArray($elSQL);
 ?>

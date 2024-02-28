@@ -103,7 +103,20 @@ CREATE TABLE `productos` (
   `Id_Proveedor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
+----
+---------------------------------TABLA SUBCATEGORIA-------------------------------------
+CREATE TABLE subcategoria (
+    id_SubCategoria INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255),
+    id_producto INT,
+    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto)
+);
+
+ALTER TABLE Productos
+ADD CONSTRAINT fk_SubCategoria
+FOREIGN KEY (id_SubCategoria) REFERENCES tabla_subcategoria(id_SubCategoria);
+
+
 -- Volcado de datos para la tabla `productos`
 --
 
