@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-02-2024 a las 07:54:53
+-- Tiempo de generación: 29-02-2024 a las 04:19:35
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -103,26 +103,15 @@ CREATE TABLE `productos` (
   `Id_Proveedor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-----
----------------------------------TABLA SUBCATEGORIA-------------------------------------
-CREATE TABLE subcategoria (
-    id_SubCategoria INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255),
-    id_producto INT,
-    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto)
-);
-
-ALTER TABLE Productos
-ADD CONSTRAINT fk_SubCategoria
-FOREIGN KEY (id_SubCategoria) REFERENCES tabla_subcategoria(id_SubCategoria);
-
-
+--
 -- Volcado de datos para la tabla `productos`
 --
 
 INSERT INTO `productos` (`Id_Producto`, `Nombre`, `Descripcion`, `Precio`, `Cantidad`, `Talla`, `Imagen`, `Id_Categoria`, `Id_Proveedor`) VALUES
-(1, 'Tacon tipo Cenicienta', 'Hermosos tacones tipo cenicienta para una ocasión especial', 30000.00, 5, 36, 'https://img.freepik.com/fotos-premium/zapatos-mujer-hd-8k-fondo-pantalla-imagen-fotografica-archivo_890746-23894.jpg', 2, 1),
-(2, 'Tenis Nike deportivas', 'Tenis deportivos para hacer ejercicio', 45000.00, 5, 37, 'https://i0.wp.com/somosfalabella.com.co/wp-content/uploads/2021/10/feet-g41938816a_1280-1.jpg', 2, 1);
+(1, 'Tacon tipo Cenicienta', 'Hermosos tacones tipo cenicienta para una ocasión especial', 35000.00, 5, 36, 'https://img.freepik.com/fotos-premium/zapatos-mujer-hd-8k-fondo-pantalla-imagen-fotografica-archivo_890746-23894.jpg', 2, 1),
+(2, 'Tenis Nike deportivas', 'Tenis deportivos para hacer ejercicio', 50000.00, 5, 36, 'https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619_1280.jpg', 2, 2),
+(6, 'Tenis Jordan', 'Tenis Jordan marca Nike', 70000.00, 5, 38, 'https://media.gq.com.mx/photos/61d470c5619ec7f7ff2376ab/16:9/w_2560%2Cc_limit/Air-Jordan-2022.jpg', 1, 2),
+(7, 'Collar de corazones', 'Hermoso collar de corazones perfecto para cualquier ocasión', 15000.00, 5, 45, 'https://cdn-media.glamira.com/media/catalog/category/product_image_top_banner_colliers.jpg', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -141,9 +130,9 @@ CREATE TABLE `proveedores` (
 --
 
 INSERT INTO `proveedores` (`Id_Proveedor`, `Nombre`, `Logo`) VALUES
-(1, 'Calzados Emme', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXNezspNVM_wSkMqMtdeblXx7EU4u5UNUgaXdz0qxL9w&s');
-INSERT INTO `proveedores` (`Nombre`, `Logo`) VALUES
-('Del Barco','https://delbarcocr.com/wp-content/uploads/2021/04/22008407_10155622816057591_4524919913745197678_n-3.jpg');
+(1, 'Calzados Emme', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXNezspNVM_wSkMqMtdeblXx7EU4u5UNUgaXdz0qxL9w&s'),
+(2, 'Nike', 'https://upload.wikimedia.org/wikipedia/commons/3/36/Logo_nike_principal.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -166,6 +155,18 @@ INSERT INTO `rol` (`id_rol`, `nombre_rol`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `subcategoria`
+--
+
+CREATE TABLE `subcategoria` (
+  `id_SubCategoria` int(11) NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `id_producto` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -179,17 +180,7 @@ CREATE TABLE `usuario` (
   `id_rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-
-
-
---------------------------------------------------ESTRUCTURA DE TABLA PARA ACCESORIOS-------------------------------------------------------------
-
-
-
-
-
-
-
+--
 -- Índices para tablas volcadas
 --
 
@@ -242,6 +233,13 @@ ALTER TABLE `rol`
   ADD PRIMARY KEY (`id_rol`);
 
 --
+-- Indices de la tabla `subcategoria`
+--
+ALTER TABLE `subcategoria`
+  ADD PRIMARY KEY (`id_SubCategoria`),
+  ADD KEY `id_producto` (`id_producto`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -280,19 +278,25 @@ ALTER TABLE `facturas`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `Id_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
-  MODIFY `Id_Proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id_Proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `subcategoria`
+--
+ALTER TABLE `subcategoria`
+  MODIFY `id_SubCategoria` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -331,15 +335,17 @@ ALTER TABLE `productos`
   ADD CONSTRAINT `FK_Productos_Proveedor` FOREIGN KEY (`Id_Proveedor`) REFERENCES `proveedores` (`Id_Proveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `subcategoria`
+--
+ALTER TABLE `subcategoria`
+  ADD CONSTRAINT `subcategoria_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`Id_Producto`);
+
+--
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `FK_ROL_USUARIO` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`);
 COMMIT;
-
-
-
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

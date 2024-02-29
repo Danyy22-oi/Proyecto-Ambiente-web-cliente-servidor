@@ -24,8 +24,8 @@
                 <li><a href='accesorios.php'>Accesorios</a></li>
                 <li><a href='proveedores.php'>Proveedores</a></li>
                 <li><a href='SubCategoria.php'>Sub Categorias</a></li>
-                <li><a href='compra.php'>Carrito</a></li>
                 <li><a href='productos.php'>Productos</a></li>
+                <li><a href='compra.php'>Carrito</a></li>
                 <li><a href='registro.php'>Inicia Sesión</a></li>
             </ul>
         </nav>

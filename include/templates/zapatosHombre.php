@@ -1,35 +1,32 @@
-
 <?php
-$login = false;
-require_once "DAL/hombreCrud.php";
-require_once "include/functions/recoge.php";
-$ingreso = recogeGet("ingreso");
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-}
+include_once 'include/templates/header.php';
+require_once "DAL/productosCrud.php";
+
+$elSQL = "SELECT * FROM productos WHERE Id_Categoria = '1'";
+$productos = getArray($elSQL);
 ?>
 
-<?php
-    require_once "DAL/hombreCrud.php";
-    $elSQL = "select id_hombre, marca, descripcion, talla, precio, imagen from hombre";
-    $myArray = getArray($elSQL);
-?>
+<div class="container">
 
-    <h2>Zapatos de hombre</h2>
+    <h1 class="my-4">Zapatos de hombre</h1>
 
-    <?php 
-    if(!empty($myArray)){
-    foreach ($myArray as $value) { ?>
-
-    <div class="contenedor_Zapatos">
-        <div class="card">
-            <?php echo "<td><img width = 250 height = 200 src='{$value['imagen']}'></td>";?>
-            <div class="card-content">
-                <h4><?php echo $value["marca"]; ?> </h5>
-                <p><?php echo $value["descripcion"]; ?> </p>
-                <p><?php echo $value["talla"]; ?> </p>
-                <p> ₡ <?php echo $value["precio"]; ?></p>
+    <div class="row">
+        <?php foreach ($productos as $producto): ?>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="<?= $producto['Imagen'] ?>" alt="<?= $producto['Nombre'] ?>"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a><?= $producto['Nombre'] ?></a>
+                        </h4>
+                        <p class="card-text"><?= $producto['Descripcion'] ?></p>
+                        <hr>
+                        <p class="card-text">Precio: ₡<?= $producto['Precio'] ?></p>
+                        <hr>
+                        <p class="card-text">Talla: <?= $producto['Talla'] ?></p>
+                    </div>
+                </div>
             </div>
-        </div>
+        <?php endforeach; ?>
     </div>
-    <?php }
-        } ?>
+</div>
