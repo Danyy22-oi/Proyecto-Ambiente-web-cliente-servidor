@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once "../../include/templates/headerAdmin.php";
+include_once "../../include/templates/header.php";
 ?>
 <main>
     <h1>Agregar Accesorio</h1>

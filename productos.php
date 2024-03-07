@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <td><?= $producto['Precio'] ?></td>
                     <td><?= $producto['Cantidad'] ?></td>
                     <td class="max"><?= $producto['Descripcion'] ?></td>
-                    <td><img src="<?= $producto['Imagen'] ?>" alt="<?= $producto['Nombre'] ?>"></td>
+                    <td><img class="logo" src="<?= $producto['Imagen'] ?>" alt="<?= $producto['Nombre'] ?>"></td>
                     <td><?= $producto['Talla'] ?></td>
                     <td>
                         <a href="actualizarproducto.php?id=<?= $producto['Id_Producto'] ?>"

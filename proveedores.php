@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php foreach ($proveedores as $proveedor) { ?>
                 <tr>
                     <td><?= $proveedor['Nombre'] ?></td>
-                    <?php echo "<td><img width = 250 height = 200 src='{$proveedor['Logo']}'></td>";?>
+                    <?php echo "<td><img class= 'logo' src='{$proveedor['Logo']}'></td>";?>
                     <td>
 
                         <a href="actualizarproveedores.php?id=<?= $proveedor['Id_Proveedor'] ?>"

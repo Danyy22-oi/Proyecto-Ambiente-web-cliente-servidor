@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once "../include/templates/headerAdmin.php";
+include_once "../include/templates/header.php";
 include_once "../include/functions/recoge.php";
 $ingreso = recogeGET("ingreso");
 
-if($_SERVER['REQUEST_METHOD']=== 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include_once "../include/functions/recoge.php";
     $id =  recogePost("id");
     $id = filter_var($id, FILTER_VALIDATE_INT);
-    if($id){
+    if ($id) {
         include_once "../DAL/usuariosCrud.php";
-        if(eliminarUsuario($id)){
+        if (eliminarUsuario($id)) {
             header("Location: /admin/usuarios.php?ingreso=2");
         }
     }
@@ -32,51 +32,48 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
         ?>
     </div>
     <div>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Correo</th>
-                    <th>Rol</th>
-                    <th>Telefono</th>
-                    <th>Acciones</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 if (!empty($myArray)) {
-                    foreach ($myArray as $usuario)
+                    foreach ($myArray as $usuario) {
                         echo "<tr>";
-                    echo "<td>" . $usuario['nombre'] . "</td>";
-                    echo "<td>" . $usuario['apellido'] . "</td>";
-                    echo "<td>" . $usuario['correo'] . "</td>";
-                    if ($usuario['id_rol'] == 1) {
-                        echo "<td>" . "Administrador" . "</td>";
-                    } else {
-                        echo "<td>" . "Usuario" . "</td>";
+                        echo "<td>" . $usuario['nombre'] . "</td>";
+                        echo "<td>" . $usuario['apellido'] . "</td>";
+                        echo "<td>" . $usuario['correo'] . "</td>";
+                        echo "<td>" . ($usuario['id_rol'] == 1 ? "Administrador" : "Usuario") . "</td>";
+                        echo "<td>" . $usuario['telefono'] . "</td>";
+                        echo "<td>";
+                        echo '<div class="iconos-accion">';
+                        echo '<a class="btn btn-primary custom-margin" href="cruds/actualizarUsuario.php?id=' . $usuario['id_usuario'] . '"><i class="fas fa-edit"></i></a>'; // Añadí una clase custom-margin
+                        echo '<form  method="POST">';
+                        echo '<input type="hidden" name="id" value="' . $usuario['id_usuario'] . '">';
+                        echo '<button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>';
+                        echo '</form>';
+                        echo "</div>";
+                        echo "</td>";
+                        echo "</tr>";
                     }
-                    echo "<td>" . $usuario['telefono'] . "</td>";
-                    echo "<td>";
-                    echo '<a href="cruds/actualizarUsuario.php?id=' . $usuario['id_usuario'] . '"><i class="fa-solid fa-pen"></i></a>';
-                    echo '<form  method="POST">';
-                    echo '<input type="hidden" name="id" value="' . $usuario['id_usuario'] . '">';
-                    echo '<button type="submit"><i class="fa-solid fa-trash"></i></button>';
-                    echo '</form>';
-                    echo "</td>";
-                    echo "</tr>";
                 } else {
-                    echo "<tr><td>No hay registros de usuarios</td></tr>";
+                    echo "<tr><td colspan='6'>No hay registros de usuarios</td></tr>";
                 }
                 ?>
-
             </tbody>
         </table>
     </div>
 </main>
 <?php
 include_once "../include/templates/footer.php";
-
 ?>
 
 </html>

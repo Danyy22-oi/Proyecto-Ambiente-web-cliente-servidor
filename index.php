@@ -1,7 +1,8 @@
+
 <?php
+
 include_once 'include/templates/header.php';
 require_once "DAL/productosCrud.php";
-
 $elSQL = "SELECT * FROM productos";
 $productos = getArray($elSQL);
 ?>

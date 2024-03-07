@@ -1,79 +1,24 @@
+:root {
+    --principal: #048088;
+    --principal-oscuro: #02545e;
+    --blanco: #ffffff;
+
+
+}
+
 * {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-  }
-
-#menu {
-	background: #FFFF;
-	height: 70px;
-	border-radius: 0px;
-	
-}
-#menu ul, #menu li {
-	margin: 0 auto;
-	padding: 0;
-	list-style: none
-}
-#menu ul {
-	width: 100%;
-	text-align: left;
-}
-#menu li {
-	display: inline-block;
-	position: relative;
-    margin-right: 30px;
-}
-#menu a {
-	display: block;
-	line-height: 80px;
-	padding: 0 14px;
-	text-decoration: none;
-	color: #000;
-	font-size: 20px;
 }
 
-#menu li a:hover {
-	color: #048088;
-}
 
-#menu input {
-	display: none;
-	margin: 0;
-	padding: 0;
-	height: 80px;
-	width: 100%;
-	opacity: 0;
-	cursor: pointer
-}
-#menu label {
-	display: none;
-	line-height: 80px;
-	text-align: left;
-	position: absolute;
-	left: 35px
-}
-#menu label:before {
-	font-size: 1.6em;
-	color: #FFFF;
-	content: "\2261"; 
-	margin-left: 20px;
-}
-
-#menu ul li a.active {
-    color: #048088;
-}
-
-.logo {
-    width: 180px;
-    height: auto;
-    margin-top: 10px;
-}
+/* 
 
 .banner {
     margin-top: 10px;
     width: 100%;
     height:auto;
-    background-color: #048088;
+    background-color: var(--principal);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,20 +41,6 @@
     }
 }
 
-.footer{
-	width: 100%;
-	background-color: #048088;
-	text-align: center;
-	color:#FFFF;
-	padding: 1rem 0;
-}
-
-.subfooter{
-	margin-top: 20px;
-	width: 100%;
-	background-color: #D9D9D9;
-}
-
 th.max,
 td.max {
     max-width: 150px;
@@ -125,10 +56,78 @@ table img {
     height: auto; 
 }
 
+
+ */
+
+
 .color-boton {
-    background-color: #048088;
+    background-color: var(--principal);
 }
 
 .color-boton:hover{
-	background-color: #048088;
+	background-color: var(--principal);
+}
+
+.logo {
+    width: 180px;
+    height: auto;
+    margin-top: 10px;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-item.dropdown:hover .dropdown-menu a:hover {
+    color: var(--principal);
+}
+
+.bg-footer-final {
+    background-color: var(--principal);
+    color: var(--blanco);
+}
+
+.fab:hover {
+    color: var(--principal);
+}
+
+.colorPrincipal {
+    color: var(--principal);
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.btnInicio-Registro {
+    background-color: var(--principal);
+    color: var(--blanco);
+}
+
+
+.btnInicio-Registro:hover {
+    background-color: var(--principal-oscuro);
+    color: var(--blanco);
+    cursor: pointer;
+}
+
+
+
+.card {
+    border: none;
+    transition: box-shadow 0.3s ease;
+
+}
+
+.card:hover {
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+
+
+/*Tables*/
+
+.iconos-accion {
+    display: flex;
+    margin-right: 2rem;
+}
+
+
+.custom-margin {
+    margin-right: 2rem; /* Ajusta el valor según la separación deseada */
 }

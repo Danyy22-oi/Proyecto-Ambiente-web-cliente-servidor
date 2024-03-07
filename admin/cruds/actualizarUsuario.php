@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <?php
-include_once "../../include/templates/headerAdmin.php";
+
 $errores = array();
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -11,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $query = "SELECT id_usuario, nombre, apellido, correo, id_rol, telefono FROM usuario WHERE id_usuario = $id";
     $queryRol = "SELECT * FROM rol";
     $roles = getArray($queryRol);
- 
+
     $mySession = getObject($query);
     if ($mySession != null) {
         $id = $mySession['id_usuario'];
@@ -49,16 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($errores)) {
         require_once "../../DAL/usuariosCrud.php";
-        if (actualizarUsuario($nombre, $apellido, $correo, $telefono, $rol,$idUser)) {
+        if (actualizarUsuario($nombre, $apellido, $correo, $telefono, $rol, $idUser)) {
             header("Location: /admin/usuarios.php?ingreso=1");
         } else {
             $errores[] = "Ocurrió un error al actualizar el dato a base de datos";
         }
     }
 }
-
+    include_once "../../include/templates/header.php";
 ?>
-<main>
+<main class="container mt-4">
     <h1>Actualizar Usuario</h1>
     <div>
         <ul>
@@ -70,39 +69,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </ul>
         <form method="POST">
             <input type="text" name="id" value="<?= $id ?>" hidden>
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" value="<?php echo isset($nombre) ? $nombre : ''; ?>">
-            <label for="apellido">Apellido</label>
-            <input type="text" name="apellido" value="<?php echo isset($apellido) ? $apellido : ''; ?>" />
-            <label for="correo">Correo</label>
-            <input type="text" name="correo" value="<?php echo isset($correo) ? $correo : ''; ?>" />
-            <label for="rol">Rol</label>
-            <select name="rol">
-                <?php
-                if ($roles) {
-                    foreach ($roles as $rol_item) {
-                ?>
-                        <option value="<?php echo $rol_item['id_rol']; ?>" <?php echo ($rol_item['id_rol'] == $rol) ? 'selected' : ''; ?>>
-                            <?php echo $rol_item['nombre_rol']; ?>
-                        </option>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre" value="<?php echo isset($nombre) ? $nombre : ''; ?>">
+            </div>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" name="apellido" value="<?php echo isset($apellido) ? $apellido : ''; ?>">
+            </div>
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo</label>
+                <input type="text" class="form-control" name="correo" value="<?php echo isset($correo) ? $correo : ''; ?>">
+            </div>
+            <div class="mb-3">
+                <label for="rol" class="form-label">Rol</label>
+                <select class="form-select" name="rol">
+                    <?php
+                    if ($roles) {
+                        foreach ($roles as $rol_item) {
+                    ?>
+                            <option value="<?php echo $rol_item['id_rol']; ?>" <?php echo ($rol_item['id_rol'] == $rol) ? 'selected' : ''; ?>>
+                                <?php echo $rol_item['nombre_rol']; ?>
+                            </option>
+                        <?php
+                        }
+                    } else {
+                      
+                        ?>
+                        <option value="">No hay roles disponibles</option>
                     <?php
                     }
-                } else {
-                    // Si no se obtuvieron roles, mostrar un mensaje de error
                     ?>
-                    <option value="">No hay roles disponibles</option>
-                <?php
-                }
-                ?>
-            </select>
-            <label for="telefono">Teléfono</label>
-            <input type="text" name="telefono" value="<?php echo isset($telefono) ? $telefono : ''; ?>">
-            <button type="submit">Actualizar</button>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="text" class="form-control" name="telefono" value="<?php echo isset($telefono) ? $telefono : ''; ?>">
+            </div>
+            <button type="submit" class="btn btn-primary color-boton mb-2">Actualizar</button>
         </form>
     </div>
 </main>
 <?php
 include_once "../../include/templates/footer.php";
 ?>
-
-</html>
