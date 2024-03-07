@@ -20,13 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         require_once "DAL/usuariosCrud.php";
 
-        $query =  "select id_usuario, nombre, apellido ,correo, telefono, contrasena from usuario where correo = '$correo'";
+        $query =  "select id_usuario, nombre, apellido ,correo, telefono, contrasena,  id_rol from usuario where correo = '$correo'";
 
         $mySession = getObject($query);
         if ($mySession != null) {
             $auth = password_verify($password, $mySession['contrasena']);
             if ($auth) {
                 $_SESSION['usuario'] = $mySession['correo'];
+                $_SESSION['rol'] = $mySession['id_rol'];
                 $_SESSION['id'] = $mySession['id_usuario'];
                 $_SESSION['login'] = true; 
                 header("Location: index.php");

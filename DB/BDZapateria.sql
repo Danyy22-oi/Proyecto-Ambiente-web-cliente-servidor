@@ -91,7 +91,9 @@ CREATE TABLE `facturas` (
 -- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE `productos` (
+/*IMPORTANTE SE MODIFICO ESTA TABLA  RECOMIENDO VOLVERLA A CREAR
+SE CREO AÑADIO EL ATRIBUTO ID SUB CATEGORIA*/
+Create TABLE `productos` (
   `Id_Producto` int(11) NOT NULL,
   `Nombre` varchar(255) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
@@ -100,19 +102,23 @@ CREATE TABLE `productos` (
   `Talla` int(11) NOT NULL,
   `Imagen` varchar(255) DEFAULT NULL,
   `Id_Categoria` int(11) NOT NULL,
-  `Id_Proveedor` int(11) NOT NULL
+  `Id_Proveedor` int(11) NOT NULL,
+  `Id_Subcategoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+/*Llave foranea para sub Categoria IMPORTANTE DE HACER*/
+ALTER TABLE `productos`
+ADD CONSTRAINT FK_PRODUCTOS_SUB_CATEGORIA Foreign Key(`id_SubCategoria`) REFERENCES subcategoria (`id_SubCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Volcado de datos para la tabla `productos`
---
-
-INSERT INTO `productos` (`Id_Producto`, `Nombre`, `Descripcion`, `Precio`, `Cantidad`, `Talla`, `Imagen`, `Id_Categoria`, `Id_Proveedor`) VALUES
-(1, 'Tacon tipo Cenicienta', 'Hermosos tacones tipo cenicienta para una ocasión especial', 35000.00, 5, 36, 'https://img.freepik.com/fotos-premium/zapatos-mujer-hd-8k-fondo-pantalla-imagen-fotografica-archivo_890746-23894.jpg', 2, 1),
-(2, 'Tenis Nike deportivas', 'Tenis deportivos para hacer ejercicio', 50000.00, 5, 36, 'https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619_1280.jpg', 2, 2),
-(6, 'Tenis Jordan', 'Tenis Jordan marca Nike', 70000.00, 5, 38, 'https://media.gq.com.mx/photos/61d470c5619ec7f7ff2376ab/16:9/w_2560%2Cc_limit/Air-Jordan-2022.jpg', 1, 2),
-(7, 'Collar de corazones', 'Hermoso collar de corazones perfecto para cualquier ocasión', 15000.00, 5, 45, 'https://cdn-media.glamira.com/media/catalog/category/product_image_top_banner_colliers.jpg', 3, 1);
-
+--SE MODIFICARON LAS INSERCIONES PARA SUBCATEGORIAS, RECOMIENDO VOLVER A CREAR PRODUCTOS E INSERTAR ESTAS
+INSERT INTO `productos` (`Id_Producto`, `Nombre`, `Descripcion`, `Precio`, `Cantidad`, `Talla`, `Imagen`, `Id_Categoria`, `Id_Proveedor`, `Id_Subcategoria`) VALUES
+(1, 'Tacon tipo Cenicienta', 'Hermosos tacones tipo cenicienta para una ocasión especial', 35000.00, 5, 36, 'https://img.freepik.com/fotos-premium/zapatos-mujer-hd-8k-fondo-pantalla-imagen-fotografica-archivo_890746-23894.jpg', 2, 1,5),
+(2, 'Tenis Nike deportivas', 'Tenis deportivos para hacer ejercicio', 50000.00, 5, 36, 'https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619_1280.jpg', 2, 2,1),
+(6, 'Tenis Jordan', 'Tenis Jordan marca Nike', 70000.00, 5, 38, 'https://media.gq.com.mx/photos/61d470c5619ec7f7ff2376ab/16:9/w_2560%2Cc_limit/Air-Jordan-2022.jpg', 1, 2,1),
+(7,'Collar de corazones', 'Hermoso collar de corazones perfecto para cualquier ocasión', 15000.00, 5, 45, 'https://cdn-media.glamira.com/media/catalog/category/product_image_top_banner_colliers.jpg', 3, 1,6);
 -- --------------------------------------------------------
 
 --
@@ -155,16 +161,30 @@ INSERT INTO `rol` (`id_rol`, `nombre_rol`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `subcategoria`
+-- Estructura de tabla para la tabla `subcategoria 
+--BORRAR Y CREAR DE NUEVO`
 --
 
-CREATE TABLE `subcategoria` (
-  `id_SubCategoria` int(11) NOT NULL,
-  `nombre` varchar(255) DEFAULT NULL,
-  `id_producto` int(11) DEFAULT NULL
+Create TABLE `subcategoria` (
+  `id_SubCategoria` int(11)  auto_increment primary key NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+   `descripcion` varchar(255) NOT NULL,
+   `status` boolean NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+
+
 -- --------------------------------------------------------
+/*INSERCIONES SUB CATEGORIA*/
+
+INSERT INTO `subcategoria` (`nombre`, `descripcion`, `status`) VALUES
+('Zapatos Deportivos', 'Zapatos diseñados para actividades deportivas.', 1),
+('Zapatos Formales', 'Zapatos adecuados para ocasiones formales o de negocios.', 1),
+('Zapatos Casuales', 'Zapatos informales para uso diario.', 1),
+('Zapatos de Vestir', 'Zapatos elegantes para eventos especiales o ceremonias.', 1),
+('Zapatos de Tacón', 'Zapatos con tacón alto, generalmente usados por mujeres.', 1),
+('Collares', 'Accesorios para el cuello, generalmente hechos de diferentes materiales.', 1);
+
 
 --
 -- Estructura de tabla para la tabla `usuario`
@@ -233,11 +253,10 @@ ALTER TABLE `rol`
   ADD PRIMARY KEY (`id_rol`);
 
 --
--- Indices de la tabla `subcategoria`
+-- Indices de la tabla `subcategoria` usar esto si es necesario
 --
 ALTER TABLE `subcategoria`
-  ADD PRIMARY KEY (`id_SubCategoria`),
-  ADD KEY `id_producto` (`id_producto`);
+  ADD PRIMARY KEY (`id_SubCategoria`);
 
 --
 -- Indices de la tabla `usuario`
@@ -293,7 +312,7 @@ ALTER TABLE `rol`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `subcategoria`
+-- AUTO_INCREMENT de la tabla `subcategoria USAR SOLO SI ES NECESARIO EN LA TABLA YA VIENE CONFIGURADA`
 --
 ALTER TABLE `subcategoria`
   MODIFY `id_SubCategoria` int(11) NOT NULL AUTO_INCREMENT;
@@ -334,11 +353,6 @@ ALTER TABLE `productos`
   ADD CONSTRAINT `FK_Productos_Categoria` FOREIGN KEY (`Id_Categoria`) REFERENCES `categorias` (`Id_Categoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_Productos_Proveedor` FOREIGN KEY (`Id_Proveedor`) REFERENCES `proveedores` (`Id_Proveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Filtros para la tabla `subcategoria`
---
-ALTER TABLE `subcategoria`
-  ADD CONSTRAINT `subcategoria_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`Id_Producto`);
 
 --
 -- Filtros para la tabla `usuario`

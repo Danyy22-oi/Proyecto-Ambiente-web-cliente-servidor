@@ -1,5 +1,5 @@
 <?php
-include_once 'include/templates/header.php';
+
 require_once "DAL/SubCategoriaCrud.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<div class='alert alert-danger' role='alert'>Error al agregar la subcategoria.</div>";
     }
 }
+include_once 'include/templates/header.php';
 ?>
 
 <main>

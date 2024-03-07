@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once "../include/templates/header.php";
+
 include_once "../include/functions/recoge.php";
 $ingreso = recogeGET("ingreso");
 
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-
+include_once "../include/templates/header.php";
 ?>
 <main>
     <div>

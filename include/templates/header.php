@@ -45,19 +45,24 @@ if (session_status() == PHP_SESSION_NONE) {
                         <li class="nav-item">
                             <a class="nav-link" href="/accesorios.php">Accesorios</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href='compra.php'>Carrito</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Admin
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-light fade">
-                                <li><a class="dropdown-item" href="/admin/usuarios.php">Usuarios</a></li>
-                                <li><a class="dropdown-item" href="/productos.php">Productos</a></li>
-                                <li><a class="dropdown-item" href="#">Categorias</a></li>
-                                <li><a class="dropdown-item" href="/admin/SubCategoria.php">Sub Categorias</a></li>
-                                <li><a class="dropdown-item" href="/proveedores.php">Proveedores</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href='/compra.php'>Carrito</a></li>
+                        <?php
+                        if (isset($_SESSION['rol']) && $_SESSION['rol'] === '1') {
+                            echo '<li class="nav-item dropdown">';
+                            echo '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
+                            echo 'Admin';
+                            echo '</a>';
+                            echo '<ul class="dropdown-menu dropdown-menu-light fade">';
+                            echo '<li><a class="dropdown-item" href="/admin/usuarios.php">Usuarios</a></li>';
+                            echo '<li><a class="dropdown-item" href="/productos.php">Productos</a></li>';
+                            echo '<li><a class="dropdown-item" href="#">Categorias</a></li>';
+                            echo '<li><a class="dropdown-item" href="/subCategoria.php">Sub Categorias</a></li>';
+                            echo '<li><a class="dropdown-item" href="/proveedores.php">Proveedores</a></li>';
+                            echo '</ul>';
+                            echo '</li>';
+                        }
+                        ?>
+
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
@@ -73,12 +78,16 @@ if (session_status() == PHP_SESSION_NONE) {
                                 ?>
                             </ul>
                         </li>
+                        <?php
+                         if (!isset($_SESSION['login'])):
+                        ?>
                         <li class="nav-item">
                             <a href="login.php" class="nav-link">Login</a>
                         </li>
                         <li class="nav-item">
                             <a href="registro.php" class="nav-link">Registro</a>
                         </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 <?php
-include_once 'include/templates/header.php';
+
 require_once "DAL/SubCategoriaCrud.php";
 
 // Verificar si se envió el formulario de actualización
@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
     $id_SubCategoria = $_GET['id'];
     $subcategoria = getObject("SELECT * FROM subcategoria WHERE id_SubCategoria = $id_SubCategoria");
 }
-
+include_once 'include/templates/header.php';
 ?>
 
 <main>

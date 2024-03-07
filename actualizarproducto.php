@@ -1,5 +1,5 @@
 <?php
-include_once 'include/templates/header.php';
+
 require_once "DAL/productosCrud.php";
 
 $categorias = getArray("SELECT * FROM categorias");
@@ -45,6 +45,7 @@ if($_SERVER['REQUEST_METHOD']== 'GET'){
         echo "<div class='alert alert-danger' role='alert'>Error al agregar el producto.</div>";
     }
 }
+include_once 'include/templates/header.php';
 ?>
 
 <main>

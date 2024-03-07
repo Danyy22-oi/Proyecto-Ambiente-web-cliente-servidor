@@ -1,5 +1,5 @@
 <?php
-include_once 'include/templates/header.php';
+
 require_once "DAL/proveedoresCrud.php";
 
 $proveedores = getArray("SELECT * FROM proveedores");
@@ -32,6 +32,7 @@ if($_SERVER['REQUEST_METHOD']== 'GET'){
         echo "<div class='alert alert-danger' role='alert'>Error al agregar el proveedor.</div>";
     }
 }
+include_once 'include/templates/header.php';
 ?>
 
 <main>
