@@ -48,15 +48,15 @@ function getObject($sql){
     return $retorno;
 }
 
-function AgregarProducto($pNombre, $pDescripcion, $pPrecio,$pCantidad,$pTalla,$pImagen,$pCategoria,$pProveedor) {
+function AgregarProducto($pNombre, $pDescripcion, $pPrecio, $pCantidad, $pTalla, $pImagen, $pCategoria, $pSubcategoria, $pProveedor) {
     $retorno = false;
 
     try {
         $oConexion = conectarDb();
 
         if(mysqli_set_charset($oConexion, "utf8")){
-            $stmt = $oConexion->prepare("insert into productos (Nombre, Descripcion, Precio, Cantidad, Talla, Imagen, Id_Categoria, Id_Proveedor) values (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssdisssi", $iNombre, $iDescripcion, $iPrecio, $iCantidad, $iTalla, $iImagen, $iIdCategoria, $iIdProveedor);
+            $stmt = $oConexion->prepare("INSERT INTO productos (Nombre, Descripcion, Precio, Cantidad, Talla, Imagen, Id_Categoria, Id_Subcategoria, Id_Proveedor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssddssiii", $iNombre, $iDescripcion, $iPrecio, $iCantidad, $iTalla, $iImagen, $iIdCategoria, $iIdSubcategoria, $iIdProveedor);
 
             $iNombre = $pNombre;
             $iDescripcion = $pDescripcion;
@@ -65,40 +65,7 @@ function AgregarProducto($pNombre, $pDescripcion, $pPrecio,$pCantidad,$pTalla,$p
             $iTalla = $pTalla;
             $iImagen = $pImagen;
             $iIdCategoria = $pCategoria;
-            $iIdProveedor = $pProveedor;
-
-            if ($stmt->execute()){
-                $retorno = true;
-            }
-        }
-
-    } catch (\Throwable $th) {
-        echo $th;
-    }finally{
-        Desconectar($oConexion);
-    }
-
-    return $retorno;
-}
-
-function EditarProducto($pIdProducto, $pNombre, $pDescripcion, $pPrecio, $pCantidad, $pTalla, $pImagen, $pCategoria, $pProveedor) {
-    $retorno = false;
-
-    try {
-        $oConexion = conectarDb();
-
-        if(mysqli_set_charset($oConexion, "utf8")){
-            $stmt = $oConexion->prepare("UPDATE productos SET Nombre = ?, Descripcion = ?, Precio = ?, Cantidad = ?, Talla = ?, Imagen = ?, Id_Categoria = ?, Id_Proveedor = ? WHERE Id_Producto = ?");
-            $stmt->bind_param("ssdisssii", $iNombre, $iDescripcion, $iPrecio, $iCantidad, $iTalla, $iImagen, $iIdCategoria, $iIdProveedor, $iIdProducto);
-
-            $iIdProducto = $pIdProducto;
-            $iNombre = $pNombre;
-            $iDescripcion = $pDescripcion;
-            $iPrecio = $pPrecio;
-            $iCantidad = $pCantidad;
-            $iTalla = $pTalla;
-            $iImagen = $pImagen;
-            $iIdCategoria = $pCategoria;
+            $iIdSubcategoria = $pSubcategoria;
             $iIdProveedor = $pProveedor;
 
             if ($stmt->execute()){
@@ -114,6 +81,43 @@ function EditarProducto($pIdProducto, $pNombre, $pDescripcion, $pPrecio, $pCanti
 
     return $retorno;
 }
+
+
+function EditarProducto($pIdProducto, $pNombre, $pDescripcion, $pPrecio, $pCantidad, $pTalla, $pImagen, $pCategoria, $pSubcategoria, $pProveedor) {
+    $retorno = false;
+
+    try {
+        $oConexion = conectarDb();
+
+        if(mysqli_set_charset($oConexion, "utf8")){
+            $stmt = $oConexion->prepare("UPDATE productos SET Nombre = ?, Descripcion = ?, Precio = ?, Cantidad = ?, Talla = ?, Imagen = ?, Id_Categoria = ?, Id_Subcategoria = ?, Id_Proveedor = ? WHERE Id_Producto = ?");
+            $stmt->bind_param("ssdisssiii", $iNombre, $iDescripcion, $iPrecio, $iCantidad, $iTalla, $iImagen, $iIdCategoria, $iIdSubcategoria, $iIdProveedor, $iIdProducto);
+
+            $iIdProducto = $pIdProducto;
+            $iNombre = $pNombre;
+            $iDescripcion = $pDescripcion;
+            $iPrecio = $pPrecio;
+            $iCantidad = $pCantidad;
+            $iTalla = $pTalla;
+            $iImagen = $pImagen;
+            $iIdCategoria = $pCategoria;
+            $iIdSubcategoria = $pSubcategoria;
+            $iIdProveedor = $pProveedor;
+
+            if ($stmt->execute()){
+                $retorno = true;
+            }
+        }
+
+    } catch (\Throwable $th) {
+        echo $th;
+    } finally {
+        Desconectar($oConexion);
+    }
+
+    return $retorno;
+}
+
 
 function EliminarProducto($pId) {
     $retorno = false;

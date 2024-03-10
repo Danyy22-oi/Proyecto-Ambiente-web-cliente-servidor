@@ -2,6 +2,8 @@
 session_start();
 
 $errores = array();
+$correo = '';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     require_once 'include/functions/recoge.php';
@@ -11,10 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $correo = filter_var($correo, FILTER_SANITIZE_EMAIL);
 
     if (empty($correo)) {
-        $errores[] = 'No se digitó el correo del usuario';
+        $errores['correo'] = 'No se digitó el correo del usuario';
     }
     if (empty($password)) {
-        $errores[] = 'No se digitó la constraseña';
+        $errores['password'] = 'No se digitó la contraseña';
     }
     if (empty($errores)) {
 
@@ -30,13 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['rol'] = $mySession['id_rol'];
                 $_SESSION['id'] = $mySession['id_usuario'];
                 $_SESSION['login'] = true; 
+                $_SESSION['nombre'] = $mySession ['nombre'];
                 header("Location: index.php");
                 exit;
             } else {
-                $errores[] = "Contraseña incorrecta";
+                $errores['password'] = "Correo o contraseña incorrecta";
             }
         } else {
-            $errores[] = "Usuario no existe";
+            $errores['password'] = "Correo o contraseña incorrecta";
         }
     }
 }
@@ -44,33 +47,29 @@ include_once "include/templates/header.php";
 ?>
 <main>
     <div class="banner">
-
-        <div class="container ">
+        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div>
-                        <h1 class="text-center colorPrincipal">Iniciar Sesion</h1>
-                        <ul class="list-unstyled">
-                            <?php
-                            foreach ($errores as $error) : ?>
-                                <li class='error text-center' style="color: red;"><?php echo $error; ?></li>
-                            <?php
-                            endforeach;
-                            ?>
-                        </ul>
-                        <h2 class="text-center">Acceso</h2>
+                        <h1 class="text-center colorPrincipal">Iniciar Sesión</h1>
                         <p class="text-center">Si ya tienes una cuenta, aquí puedes iniciar sesión</p>
                         <form method="POST">
                             <!-- Email input -->
                             <div class="mb-4">
-                                <label class="form-label" for="correo">Email address</label>
-                                <input type="email" id="correo" name="correo" class="form-control form-control-sm" />
+                                <label class="form-label" for="correo">Correo Electrónico</label>
+                                <input type="email" id="correo" name="correo" class="form-control form-control-sm <?php echo isset($errores['correo']) ? 'is-invalid' : ''; ?>" value="<?php echo htmlspecialchars($correo); ?>" />
+                                <?php if (isset($errores['correo'])) : ?>
+                                    <div class="invalid-feedback"><?php echo $errores['correo']; ?></div>
+                                <?php endif; ?>
                             </div>
 
                             <!-- Password input -->
                             <div class="mb-4">
-                                <label class="form-label" for="password">Password</label>
-                                <input type="password" id="password" name="password" class="form-control form-control-sm" />
+                                <label class="form-label" for="password">Contraseña</label>
+                                <input type="password" id="password" name="password" class="form-control form-control-sm <?php echo isset($errores['password']) ? 'is-invalid' : ''; ?>" />
+                                <?php if (isset($errores['password'])) : ?>
+                                    <div class="invalid-feedback"><?php echo $errores['password']; ?></div>
+                                <?php endif; ?>
                             </div>
 
                             <!-- 2 column grid layout for inline styling -->
@@ -83,14 +82,15 @@ include_once "include/templates/header.php";
 
                             <!-- Submit button -->
                             <div class="text-center mb-2">
-                                <button type="submit" class="btn btnInicio-Registro btn-block ">Inciar Sesion</button>
+                                <button type="submit" class="btn btnInicio-Registro btn-block">Iniciar Sesión</button>
                             </div>
                         </form>
-                        <p class="text-center">No tienes una cuenta? Regístrate <span><a href="registro.php">aquí</a></span></p>
+                        <p class="text-center">¿No tienes una cuenta? Regístrate <span><a href="registro.php">aquí</a></span></p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </main>
 
 <?php

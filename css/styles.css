@@ -11,65 +11,16 @@
     font-optical-sizing: auto;
 }
 
-
-/* 
-
-.banner {
-    margin-top: 10px;
-    width: 100%;
-    height:auto;
-    background-color: var(--principal);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.banner h1 {
-    color: white;
-    text-align: center;
-}
-
-@media screen and (max-width: 1150px) {
-    .banner {
-        margin-top: 90px;
-    }
-}
-
-@media screen and (max-width: 580px) {
-    .banner {
-        margin-top: 180px;
-    }
-}
-
-th.max,
-td.max {
-    max-width: 150px;
-}
-
-.card-img-top {
-    max-width: 600px;
-    height: 300px;
-}
-
-table img {
-    max-width: 200px;
-    height: auto; 
-}
-
-
- */
-
-
 .color-boton {
     background-color: var(--principal);
 }
 
-.color-boton:hover{
-	background-color: var(--principal);
+.color-boton:hover {
+    background-color: var(--principal);
 }
 
 .logo {
-    width: 180px;
+    width: 200px;
     height: auto;
     margin-top: 10px;
 }
@@ -77,6 +28,7 @@ table img {
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-item.dropdown:hover .dropdown-menu a:hover {
     color: var(--principal);
+    background-color: #fff;
 }
 
 .bg-footer-final {
@@ -99,14 +51,11 @@ table img {
     color: var(--blanco);
 }
 
-
 .btnInicio-Registro:hover {
     background-color: var(--principal-oscuro);
     color: var(--blanco);
     cursor: pointer;
 }
-
-
 
 .card {
     border: none;
@@ -118,16 +67,25 @@ table img {
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
-
-
-/*Tables*/
-
 .iconos-accion {
     display: flex;
     margin-right: 2rem;
 }
 
-
 .custom-margin {
-    margin-right: 2rem; /* Ajusta el valor según la separación deseada */
+    margin-right: 2rem;
+}
+
+.navbar-nav .nav-link {
+    margin-right: 15px;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.custom-container {
+    max-width: 1700px; /* Puedes ajustar el valor según tus necesidades */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
 }

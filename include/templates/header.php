@@ -15,7 +15,8 @@ if (session_status() == PHP_SESSION_NONE) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/normalize.css">
     <script src="https://kit.fontawesome.com/3c0d9a3fca.js" crossorigin="anonymous"></script>
@@ -28,7 +29,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 <a class="navbar-brand" href="/">
                     <img src="/img/Logo.png" alt="Logo Zapateria" class="logo">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
@@ -45,10 +48,12 @@ if (session_status() == PHP_SESSION_NONE) {
                         <li class="nav-item">
                             <a class="nav-link" href="/accesorios.php">Accesorios</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href='/compra.php'>Carrito</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='/compra.php'>Carrito</a>
+                        </li>
                         <?php
                         if (isset($_SESSION['rol']) && $_SESSION['rol'] === '1') {
-                            echo '<li class="nav-item dropdown">';
+                            echo '<li class="nav-item dropdown">' ;
                             echo '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
                             echo 'Admin';
                             echo '</a>';
@@ -65,22 +70,24 @@ if (session_status() == PHP_SESSION_NONE) {
 
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0">
+                        <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
+                        <li class="nav-item">
+                            <span class="nav-link">Hola, <?= $_SESSION['nombre'] ?></span>
+                        </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Cuenta
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fas fa-user-circle fa-2x"></i>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-light fade">
+                            <ul class="dropdown-menu dropdown-menu-light fade" style="min-width: auto;">
                                 <li><a class="dropdown-item" href="\Ajustes.php">Ajustes</a></li>
-                                <?php
-                                if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
-                                    echo '<li><a class="dropdown-item" href="/logout.php">Log Out</a></li>';
-                                }
-                                ?>
+                                <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
+                                <li><a class="dropdown-item" href="/logout.php">Salir</a></li>
+                                <?php endif; ?>
                             </ul>
                         </li>
-                        <?php
-                         if (!isset($_SESSION['login'])):
-                        ?>
+                        <?php endif; ?>
+                        <?php if (!isset($_SESSION['login'])): ?>
                         <li class="nav-item">
                             <a href="login.php" class="nav-link">Login</a>
                         </li>
@@ -89,6 +96,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         </li>
                         <?php endif; ?>
                     </ul>
+
                 </div>
             </div>
         </nav>

@@ -23,7 +23,7 @@ include_once 'include/templates/header.php';
 ?>
 
 <main>
-    <div class="container">
+    <div class="custom-container">
         <div style="float: right;">
             <a href="agregarproducto.php">
                 <button type="button" class="btn btn-success color-boton">Añadir Producto</button>
@@ -32,7 +32,7 @@ include_once 'include/templates/header.php';
         <h2>Productos</h2>
         <?php if (!empty($productos)): ?>
         <table class="table">
-            <thead>
+            <thead style="text-align: center;">
                 <tr>
                     <th class="max">Nombre</th>
                     <th>Categoría</th>
@@ -44,41 +44,42 @@ include_once 'include/templates/header.php';
                     <th>Acciones</th>
                 </tr>
             </thead>
+
             <tbody>
                 <?php foreach ($productos as $producto): ?>
                 <tr>
-                    <td><?= $producto['Nombre'] ?></td>
-                    <td>
+                    <td class="text-center" style="max-width: 100px;" ><?= $producto['Nombre'] ?></td>
+                    <td class="text-center">
                         <?php
-                                $categoria = '';
-                                switch ($producto['Id_Categoria']) {
-                                    case 1:
-                                        $categoria = 'Hombres';
-                                        break;
-                                    case 2:
-                                        $categoria = 'Mujeres';
-                                        break;
-                                    case 3:
-                                        $categoria = 'Accesorios';
-                                        break;
-                                }
-                                echo $categoria;
-                                ?>
+            $categoria = '';
+            switch ($producto['Id_Categoria']) {
+                case 1:
+                    $categoria = 'Hombres';
+                    break;
+                case 2:
+                    $categoria = 'Mujeres';
+                    break;
+                case 3:
+                    $categoria = 'Accesorios';
+                    break;
+            }
+            echo $categoria;
+            ?>
                     </td>
-                    <td><?= $producto['Precio'] ?></td>
-                    <td><?= $producto['Cantidad'] ?></td>
-                    <td class="max"><?= $producto['Descripcion'] ?></td>
-                    <td><img class="logo" src="<?= $producto['Imagen'] ?>" alt="<?= $producto['Nombre'] ?>"></td>
-                    <td><?= $producto['Talla'] ?></td>
-                    <td>
+                    <td class="text-center"><?= $producto['Precio'] ?></td>
+                    <td class="text-center"><?= $producto['Cantidad'] ?></td>
+                    <td style="max-width: 200px;"><?= $producto['Descripcion'] ?></td>
+                    <td class="text-center"><img class="logo" src="<?= $producto['Imagen'] ?>"
+                            alt="<?= $producto['Nombre'] ?>"></td>
+                    <td class="text-center"><?= $producto['Talla'] ?></td>
+                    <td class="text-center">
                         <a href="actualizarproducto.php?id=<?= $producto['Id_Producto'] ?>"
                             class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" style="display: inline;">
                             <input type="hidden" name="id" value="<?= $producto['Id_Producto'] ?>">
                             <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('¿Está seguro de que desea eliminar este producto?');">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
+                                onclick="return confirm('¿Está seguro de que desea eliminar este producto?');"><i
+                                    class="fas fa-trash-alt"></i></button>
                             <input type="hidden" name="action" value="eliminar_producto">
                         </form>
                     </td>

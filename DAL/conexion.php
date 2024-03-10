@@ -2,7 +2,7 @@
 function conectarDb(){
     $server = 'localhost';
     $user = 'root';
-    $password = '1234';
+    $password = '';
     $database = 'zapateriaProyecto';
 
     $conexion = mysqli_connect($server,$user,$password, $database);

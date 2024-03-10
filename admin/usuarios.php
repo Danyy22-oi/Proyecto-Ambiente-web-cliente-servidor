@@ -21,6 +21,7 @@ include_once "../include/templates/header.php";
 ?>
 <main>
     <div>
+        <br>
         <h2>Usuarios
         </h2>
         <p><?= $ingreso == 1 ? "Se actualizó el usuario correctamente" : ""; ?></p>
