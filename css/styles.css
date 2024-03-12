@@ -40,6 +40,7 @@
     color: var(--principal);
 }
 
+
 .colorPrincipal {
     color: var(--principal);
     font-size: xx-large;
@@ -59,12 +60,14 @@
 
 .card {
     border: none;
-    transition: box-shadow 0.3s ease;
+    
+    transition: transform .5s ease;
 
 }
 
 .card:hover {
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
 }
 
 .iconos-accion {
@@ -86,6 +89,25 @@
 }
 
 .custom-container {
-    max-width: 1700px; /* Puedes ajustar el valor según tus necesidades */
-    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    max-width: 1700px; 
+    margin: 0 auto; 
 }
+
+/*Barra de rango*/
+.custom-range-sm{
+    width: 200px; 
+    height: 20px;
+}
+
+
+/*Sub categoria mennu*/
+
+.subCategoria-Menu{
+
+
+}
+.subCategoria-Menu:hover{
+    color: var(--principal);
+}
+
+
