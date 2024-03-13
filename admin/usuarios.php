@@ -3,10 +3,15 @@
 <?php
 
 include_once "../include/functions/recoge.php";
+include_once "../include/functions/autenticado.php";
+
+verificarAutenticacion();
+
+
 $ingreso = recogeGET("ingreso");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include_once "../include/functions/recoge.php";
+    include_once "../include/fusnctions/recoge.php";
     $id =  recogePost("id");
     $id = filter_var($id, FILTER_VALIDATE_INT);
     if ($id) {

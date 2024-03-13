@@ -1,6 +1,8 @@
 
 <?php
+include_once "../../include/functions/autenticado.php";
 
+verificarAutenticacion();
 $errores = array();
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {

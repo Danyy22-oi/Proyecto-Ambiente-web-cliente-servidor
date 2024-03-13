@@ -60,7 +60,7 @@ if (session_status() == PHP_SESSION_NONE) {
                             echo '<ul class="dropdown-menu dropdown-menu-light fade">';
                             echo '<li><a class="dropdown-item" href="/admin/usuarios.php">Usuarios</a></li>';
                             echo '<li><a class="dropdown-item" href="/productos.php">Productos</a></li>';
-                            echo '<li><a class="dropdown-item" href="#">Categorias</a></li>';
+                            echo '<li><a class="dropdown-item" href="/admin/categorias.php">Categorias</a></li>';
                             echo '<li><a class="dropdown-item" href="/subCategoria.php">Sub Categorias</a></li>';
                             echo '<li><a class="dropdown-item" href="/proveedores.php">Proveedores</a></li>';
                             echo '</ul>';

@@ -4,8 +4,9 @@
     include_once "include/templates/header.php";
 ?>
 <main>
-    <body>
-    </body>
+    <div class="container">
+        <h2>El carrito se encuentra vacio</h2>
+    </div>
 </main>
 <?php 
     include_once "include/templates/footer.php";

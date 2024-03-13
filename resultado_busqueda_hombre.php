@@ -14,9 +14,10 @@ include_once 'include/templates/header.php';
 
     <?php
     include 'include/templates/menuSubCategoria_hombre.php';
+    include 'include/templates/rangoBusquedaHombre.php';
     if (count($productos) > 0) {
 
-        include 'include/templates/rangoBusquedaHombre.php';
+       
         include 'include/templates/zapatosHombre.php';
     } else {
         echo '<div class="container mt-5">';

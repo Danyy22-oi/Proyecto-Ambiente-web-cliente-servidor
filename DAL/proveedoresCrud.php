@@ -121,8 +121,8 @@ function EliminarProveedores($pId_Proveedor) {
         }
 
     } catch (\Throwable $th) {
-
-        echo $th;
+        
+        //echo $th;
     }finally{
         Desconectar($oConexion);
     }

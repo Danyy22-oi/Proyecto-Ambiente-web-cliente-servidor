@@ -1,10 +1,12 @@
 <?php
+include_once "include/functions/autenticado.php";
 
+verificarAutenticacion();
 require_once "DAL/proveedoresCrud.php";
 
 $elSQL = "SELECT * FROM proveedores";
 $proveedores = getArray($elSQL);
-
+$errores = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['action'] == 'eliminar_proveedores') {
         if (isset($_POST['id'])) {
@@ -12,10 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (EliminarProveedores($id)) {
                 header("Location: proveedores.php");
             } else {
-                echo "<div class='alert alert-danger' role='alert'>Error al eliminar el proveedor.</div>";
+                $errores[] = "Error al eliminar el proveedor, producto relacionado";
             }
         } else {
-            echo "<div class='alert alert-danger' role='alert'>ID de proveedor no recibido.</div>";
+            $errores[] = "ID de proveedor no recibido";
         }
     }
 }
@@ -30,6 +32,9 @@ include_once 'include/templates/header.php';
             </a>
         </div>
         <h2>Proveedores</h2>
+        <?php foreach ($errores as $error) : ?>
+            <div class='alert alert-danger' role='alert'><?php echo $error ?>.</div>
+        <?php endforeach; ?>
         <table class="table">
             <thead>
                 <tr>

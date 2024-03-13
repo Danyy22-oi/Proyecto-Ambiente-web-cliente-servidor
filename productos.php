@@ -1,6 +1,9 @@
 <?php
+include_once "include/functions/autenticado.php";
 
+verificarAutenticacion();
 require_once "DAL/productosCrud.php";
+
 
 $elSQL = "SELECT * FROM productos";
 $productos = getArray($elSQL);

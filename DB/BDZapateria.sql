@@ -107,10 +107,23 @@ Create TABLE `productos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-/*Llave foranea para sub Categoria IMPORTANTE DE HACER*/
+/*===============================================================================================================================================================*/
+/*llaves y primarias  foraneas productos*/
+ALTER TABLE `productos`
+  MODIFY `Id_Producto` int(11)  primary key NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+
 ALTER TABLE `productos`
 ADD CONSTRAINT FK_PRODUCTOS_SUB_CATEGORIA Foreign Key(`id_SubCategoria`) REFERENCES subcategoria (`id_SubCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+ALTER TABLE `productos`
+ADD CONSTRAINT FK_PRODUCTOS_Categoria Foreign Key(`Id_Categoria`) REFERENCES categorias (`Id_Categoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE `productos`
+ADD CONSTRAINT FK_PRODUCTOS_Proovedor Foreign Key(`Id_Proveedor`) REFERENCES proveedores (`Id_Proveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+/*===============================================================================================================================================================*/
 --
 -- Volcado de datos para la tabla `productos`
 --SE MODIFICARON LAS INSERCIONES PARA SUBCATEGORIAS, RECOMIENDO VOLVER A CREAR PRODUCTOS E INSERTAR ESTAS

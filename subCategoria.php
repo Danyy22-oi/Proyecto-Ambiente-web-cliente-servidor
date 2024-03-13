@@ -1,5 +1,7 @@
 <?php
+include_once "include/functions/autenticado.php";
 
+verificarAutenticacion();
 require_once "DAL/subCategoriaCrud.php";
 
 $elSQL = "SELECT * FROM subcategoria";
