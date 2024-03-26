@@ -20,6 +20,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/normalize.css">
     <script src="https://kit.fontawesome.com/3c0d9a3fca.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -69,7 +70,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         ?>
 
                     </ul>
-                    <ul class="navbar-nav mb-2 mb-lg-0">
+                    <ul class="navbar-nav mb-2 mb-lg-0" style="margin-right: 10rem;">
                         <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
                         <li class="nav-item">
                             <span class="nav-link">Hola, <?= $_SESSION['nombre'] ?></span>
@@ -80,8 +81,10 @@ if (session_status() == PHP_SESSION_NONE) {
                                 <i class="fas fa-user-circle fa-2x"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light fade" style="min-width: auto;">
-                                <li><a class="dropdown-item" href="\Ajustes.php">Ajustes</a></li>
                                 <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
+                                <li><a  class="dropdown-item" href="/pedidos.html">Pedidos</a></li>
+                                <li><a  class="dropdown-item" href="/Direcciones.php?id=<?php echo $_SESSION['id'] ?>">Direcciones</a></li> 
+                                <li><a  class="dropdown-item" href="/DetallesCuenta.php?id=<?php echo $_SESSION['id'] ?>">Detalles de Cuenta</a></li>   
                                 <li><a class="dropdown-item" href="/logout.php">Salir</a></li>
                                 <?php endif; ?>
                             </ul>

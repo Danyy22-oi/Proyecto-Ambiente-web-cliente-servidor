@@ -236,7 +236,7 @@ ALTER TABLE `categorias`
 --
 ALTER TABLE `direccion`
   ADD PRIMARY KEY (`id_direccion`),
-  ADD KEY `FK_USUARIO_DIRECCION` (`id_usuario`);
+  ADD FOREIGN KEY `FK_USUARIO_DIRECCION`(id_usuario) REFERENCES usuario (`id_usuario`);
 
 --
 -- Indices de la tabla `facturas`
