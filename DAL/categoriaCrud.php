@@ -1,8 +1,5 @@
 <?php
 
-
-include_once 'include/templates/header.php';
-
 require_once "conexion.php";
 
 

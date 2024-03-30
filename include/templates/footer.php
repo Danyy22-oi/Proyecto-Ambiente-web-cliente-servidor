@@ -14,7 +14,7 @@
                         <i class="fas fa-gem me-3"></i>Zapateria El Buen Precio
                     </h6>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Encuentra estilo y calidad al mejor precio en Zapatería El Buen Precio. ¡Caminamos juntos hacia tu mejor look!
                     </p>
                 </div>
                 <!-- Grid column -->

@@ -3,7 +3,6 @@
     --principal-oscuro: #02545e;
     --blanco: #ffffff;
 
-
 }
 
 * {
@@ -34,6 +33,7 @@
 .bg-footer-final {
     background-color: var(--principal);
     color: var(--blanco);
+    
 }
 
 .fab:hover {
@@ -93,21 +93,19 @@
     margin: 0 auto; 
 }
 
-/*Barra de rango*/
 .custom-range-sm{
     width: 200px; 
     height: 20px;
 }
 
-
-/*Sub categoria mennu*/
-
 .subCategoria-Menu{
-
 
 }
 .subCategoria-Menu:hover{
     color: var(--principal);
 }
 
-
+.required {
+    color: red; 
+    margin-left: 5px; 
+}

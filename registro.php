@@ -121,7 +121,7 @@ include_once "include/templates/header.php";
                             <button type="submit" class="btn btnInicio-Registro btn-block ">Registrarse</button>
                         </div>
                     </form>
-                    <p class="text-center">Ya tienes una Cuenta? Inicia Sesion <span><a href="registro.php">aquí</a></span></p>
+                    <p class="text-center">Ya tienes una Cuenta? Inicia Sesión <span><a href="login.php">aquí</a></span></p>
                 </div>
             </div>
         </div>

@@ -15,7 +15,10 @@
                     <hr>
                     <p class="card-text">Precio: ₡<?= $producto['Precio'] ?></p>
                     <hr>
-                    <p class="card-text">Talla: <?= $producto['Talla'] ?></p>
+                    <div class="text-center">
+                        <a href="detalleProducto.php?id=<?= $producto['Id_Producto'] ?>" class="btn btn-primary"
+                            style="background-color: #048088;">Ver Detalles</a>
+                    </div>
                 </div>
             </div>
         </div>

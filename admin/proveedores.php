@@ -1,8 +1,8 @@
 <?php
-include_once "include/functions/autenticado.php";
+include_once "../include/functions/autenticado.php";
 
 verificarAutenticacion();
-require_once "DAL/proveedoresCrud.php";
+require_once "../DAL/proveedoresCrud.php";
 
 $elSQL = "SELECT * FROM proveedores";
 $proveedores = getArray($elSQL);
@@ -21,13 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-include_once 'include/templates/header.php';
+include_once '../include/templates/header.php';
 ?>
 
 <main>
     <div class="container">
         <div style="float: right;">
-            <a href="agregarproveedor.php">
+            <a href="../agregarproveedor.php">
                 <button type="button" class="btn btn-success color-boton">Añadir Proveedor</button>
             </a>
         </div>
@@ -51,7 +51,7 @@ include_once 'include/templates/header.php';
                         <?php echo "<td><img class= 'logo' src='{$proveedor['Logo']}'></td>"; ?>
                         <td>
 
-                            <a href="actualizarproveedores.php?id=<?= $proveedor['Id_Proveedor'] ?>" class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
+                            <a href="../actualizarproveedores.php?id=<?= $proveedor['Id_Proveedor'] ?>" class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
                             <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" style="display: inline;">
                                 <input type="hidden" name="id" value="<?= $proveedor['Id_Proveedor'] ?>">
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar este proveedor?');">
@@ -75,7 +75,7 @@ include_once 'include/templates/header.php';
 </main>
 
 <?php
-include_once 'include/templates/footer.php';
+include_once '../include/templates/footer.php';
 ?>
 
 </html>

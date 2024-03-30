@@ -50,30 +50,32 @@ include_once "../include/templates/header.php";
                 </tr>
             </thead>
             <tbody>
-                <?php
+            <?php
                 if (!empty($myArray)) {
                     foreach ($myArray as $usuario) {
-                        echo "<tr>";
-                        echo "<td>" . $usuario['nombre'] . "</td>";
-                        echo "<td>" . $usuario['apellido'] . "</td>";
-                        echo "<td>" . $usuario['correo'] . "</td>";
-                        echo "<td>" . ($usuario['id_rol'] == 1 ? "Administrador" : "Usuario") . "</td>";
-                        echo "<td>" . $usuario['telefono'] . "</td>";
-                        echo "<td>";
-                        echo '<div class="iconos-accion">';
-                        echo '<a class="btn btn-primary custom-margin" href="cruds/actualizarUsuario.php?id=' . $usuario['id_usuario'] . '"><i class="fas fa-edit"></i></a>'; // Añadí una clase custom-margin
-                        echo '<form  method="POST">';
-                        echo '<input type="hidden" name="id" value="' . $usuario['id_usuario'] . '">';
-                        echo '<button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>';
-                        echo '</form>';
-                        echo "</div>";
-                        echo "</td>";
-                        echo "</tr>";
+                        if ($_SESSION['nombre'] != $usuario['nombre']) { // Verifica si el nombre de sesión no coincide con el nombre del usuario actual
+                            echo "<tr>";
+                            echo "<td>" . $usuario['nombre'] . "</td>";
+                            echo "<td>" . $usuario['apellido'] . "</td>";
+                            echo "<td>" . $usuario['correo'] . "</td>";
+                            echo "<td>" . ($usuario['id_rol'] == 1 ? "Administrador" : "Usuario") . "</td>";
+                            echo "<td>" . $usuario['telefono'] . "</td>";
+                            echo "<td>";
+                            echo '<div class="iconos-accion">';
+                            echo '<a class="btn btn-primary custom-margin" href="cruds/actualizarUsuario.php?id=' . $usuario['id_usuario'] . '"><i class="fas fa-edit"></i></a>';
+                            echo '<form method="POST">';
+                            echo '<input type="hidden" name="id" value="' . $usuario['id_usuario'] . '">';
+                            echo '<button class="btn btn-danger" type="submit" onclick="return confirm(\'¿Está seguro de que desea eliminar este usuario?\');"><i class="fas fa-trash-alt"></i></button>';
+                            echo '</form>';
+                            echo "</div>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
                     }
                 } else {
                     echo "<tr><td colspan='6'>No hay registros de usuarios</td></tr>";
                 }
-                ?>
+            ?>
             </tbody>
         </table>
     </div>

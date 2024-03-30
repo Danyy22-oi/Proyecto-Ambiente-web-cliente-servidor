@@ -54,7 +54,6 @@ include_once "include/templates/header.php";
                         <h1 class="text-center colorPrincipal">Iniciar Sesión</h1>
                         <p class="text-center">Si ya tienes una cuenta, aquí puedes iniciar sesión</p>
                         <form method="POST">
-                            <!-- Email input -->
                             <div class="mb-4">
                                 <label class="form-label" for="correo">Correo Electrónico</label>
                                 <input type="email" id="correo" name="correo" class="form-control form-control-sm <?php echo isset($errores['correo']) ? 'is-invalid' : ''; ?>" value="<?php echo htmlspecialchars($correo); ?>" />
@@ -63,7 +62,6 @@ include_once "include/templates/header.php";
                                 <?php endif; ?>
                             </div>
 
-                            <!-- Password input -->
                             <div class="mb-4">
                                 <label class="form-label" for="password">Contraseña</label>
                                 <input type="password" id="password" name="password" class="form-control form-control-sm <?php echo isset($errores['password']) ? 'is-invalid' : ''; ?>" />
@@ -72,15 +70,12 @@ include_once "include/templates/header.php";
                                 <?php endif; ?>
                             </div>
 
-                            <!-- 2 column grid layout for inline styling -->
-                            <div class="row mb-4">
+                            <!-- <div class="row mb-4">
                                 <div class="col">
-                                    <!-- Simple link -->
                                     <a href="#!" class="d-block text-center">Olvidaste tu contraseña?</a>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <!-- Submit button -->
                             <div class="text-center mb-2">
                                 <button type="submit" class="btn btnInicio-Registro btn-block">Iniciar Sesión</button>
                             </div>

@@ -5,9 +5,6 @@ if (session_status() == PHP_SESSION_NONE) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,7 +47,8 @@ if (session_status() == PHP_SESSION_NONE) {
                             <a class="nav-link" href="/accesorios.php">Accesorios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href='/compra.php'>Carrito</a>
+                            <a class="nav-link"
+                                href="<?php echo isset($_SESSION['usuario']) ? '../carrito.php?id=' . $_SESSION['id'] : 'login.php'; ?>">Carrito</a>
                         </li>
                         <?php
                         if (isset($_SESSION['rol']) && $_SESSION['rol'] === '1') {
@@ -60,10 +58,10 @@ if (session_status() == PHP_SESSION_NONE) {
                             echo '</a>';
                             echo '<ul class="dropdown-menu dropdown-menu-light fade">';
                             echo '<li><a class="dropdown-item" href="/admin/usuarios.php">Usuarios</a></li>';
-                            echo '<li><a class="dropdown-item" href="/productos.php">Productos</a></li>';
+                            echo '<li><a class="dropdown-item" href="/admin/productos.php">Productos</a></li>';
                             echo '<li><a class="dropdown-item" href="/admin/categorias.php">Categorias</a></li>';
                             echo '<li><a class="dropdown-item" href="/subCategoria.php">Sub Categorias</a></li>';
-                            echo '<li><a class="dropdown-item" href="/proveedores.php">Proveedores</a></li>';
+                            echo '<li><a class="dropdown-item" href="/admin/proveedores.php">Proveedores</a></li>';
                             echo '</ul>';
                             echo '</li>';
                         }
@@ -82,9 +80,12 @@ if (session_status() == PHP_SESSION_NONE) {
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light fade" style="min-width: auto;">
                                 <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
-                                <li><a  class="dropdown-item" href="/pedidos.html">Pedidos</a></li>
-                                <li><a  class="dropdown-item" href="/Direcciones.php?id=<?php echo $_SESSION['id'] ?>">Direcciones</a></li> 
-                                <li><a  class="dropdown-item" href="/DetallesCuenta.php?id=<?php echo $_SESSION['id'] ?>">Detalles de Cuenta</a></li>   
+                                <li><a class="dropdown-item" href="/pedidos.html">Pedidos</a></li>
+                                <li><a class="dropdown-item"
+                                        href="/Direcciones.php?id=<?php echo $_SESSION['id'] ?>">Direcciones</a></li>
+                                <li><a class="dropdown-item"
+                                        href="/DetallesCuenta.php?id=<?php echo $_SESSION['id'] ?>">Detalles de
+                                        Cuenta</a></li>
                                 <li><a class="dropdown-item" href="/logout.php">Salir</a></li>
                                 <?php endif; ?>
                             </ul>
@@ -104,3 +105,4 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
         </nav>
     </header>
+</body>

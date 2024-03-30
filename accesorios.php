@@ -7,7 +7,6 @@ include_once "include/templates/header.php";
 
 <main>
     <?php
-    include 'include/templates/menuSubCategoria.php';
     include 'include/templates/accesoriosLista.php';
     ?>
 </main>

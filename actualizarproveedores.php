@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD']== 'GET'){
         $logo = recogePost("logo");
 
     if (EditarProveedores($id, $nombre, $logo)) {
-        header("Location: proveedores.php");
+        header("Location: admin/proveedores.php");
     } else {
         echo "<div class='alert alert-danger' role='alert'>Error al agregar el proveedor.</div>";
     }
