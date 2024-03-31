@@ -1,5 +1,6 @@
 <?php 
 
+
 $elSQL2 = "SELECT * FROM subcategoria";
 $subCategorias = getArray($elSQL2);
 

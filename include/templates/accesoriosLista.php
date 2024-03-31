@@ -1,17 +1,10 @@
-<?php
-include_once 'include/templates/header.php';
-require_once "DAL/productosCrud.php";
-
-$elSQL = "SELECT * FROM productos WHERE Id_Categoria = '3'";
-$productos = getArray($elSQL);
-?>
-
 <div class="container">
+    <?php if (count($productos) > 0) : ?>
+    <h1 class="my-4">Nuestros Accesorios</h1>
 
-    <h1 class="my-4">Accesorios</h1>
 
     <div class="row">
-        <?php foreach ($productos as $producto): ?>
+        <?php foreach ($productos as $producto) : ?>
         <div class="col-lg-4 mb-4">
             <div class="card h-100">
                 <a href="#"><img class="card-img-top" src="<?= $producto['Imagen'] ?>"
@@ -33,4 +26,8 @@ $productos = getArray($elSQL);
         </div>
         <?php endforeach; ?>
     </div>
+    <?php else : ?>
+    <p>No hay productos a mostrar</p>
+    <?php endif; ?>
+
 </div>
