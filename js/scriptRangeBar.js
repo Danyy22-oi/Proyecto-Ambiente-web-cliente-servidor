@@ -32,4 +32,12 @@ function buscarPorPrecioMujer() {
     window.location.href = `resultado_busqueda_mujer.php?precio=${precio}`;
 }
 
+function buscarPorPrecioAccesorio() {
+    const btnBuscarPrecio = document.getElementById('buscarPorPrecio');
+    const rangoPrecios = document.getElementById('customRange2');
+
+    const precio = rangoPrecios.value;
+    window.location.href = `resultado_busqueda_accesorio.php?precio=${precio}`;
+}
+
 

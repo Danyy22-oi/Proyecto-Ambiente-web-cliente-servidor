@@ -5,7 +5,7 @@ if (isset($_GET['subcategoria_id']) || isset($_GET['precio'])) {
     $precio = $_GET['precio'];
 
     $subcategoria_id = $_GET['subcategoria_id'];
-    $elSQL = "SELECT *FROM productos where Id_Categoria= '2' AND (Id_Subcategoria ='$subcategoria_id' OR Precio <= '$precio') ";
+    $elSQL = "SELECT *FROM productos where Id_Categoria= '3' AND (Id_Subcategoria ='$subcategoria_id' OR Precio <= '$precio') ";
     $productos = getArray($elSQL);
 }
 include_once 'include/templates/header.php';
@@ -16,7 +16,7 @@ include_once 'include/templates/header.php';
     include 'include/templates/rangoBusquedaAccesorio.php';
     if (count($productos) > 0) {
 
-        include 'include/templates/zapatosAccesorio.php';
+        include 'include/templates/accesoriosLista.php';
     } else {
         echo '<div class="container mt-5">';
         echo '<div class="row">';

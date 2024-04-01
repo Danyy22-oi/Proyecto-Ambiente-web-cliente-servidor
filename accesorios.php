@@ -2,7 +2,7 @@
 require_once "DAL/productosCrud.php";
 
 
-$elSQL = "SELECT * FROM productos WHERE Id_Categoria = '2'";
+$elSQL = "SELECT * FROM productos WHERE Id_Categoria = '3'";
 $productos = getArray($elSQL);
 
 $elSQL2 = "SELECT * FROM subcategoria";
