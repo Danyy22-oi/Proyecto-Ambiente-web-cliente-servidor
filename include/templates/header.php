@@ -46,10 +46,6 @@ if (session_status() == PHP_SESSION_NONE) {
                         <li class="nav-item">
                             <a class="nav-link" href="/accesorios.php">Accesorios</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="<?php echo isset($_SESSION['usuario']) ? '../carrito.php?id=' . $_SESSION['id'] : 'login.php'; ?>">Carrito</a>
-                        </li>
                         <?php
                         if (isset($_SESSION['rol']) && $_SESSION['rol'] === '1') {
                             echo '<li class="nav-item dropdown">' ;
@@ -73,33 +69,44 @@ if (session_status() == PHP_SESSION_NONE) {
                         <li class="nav-item">
                             <span class="nav-link">Hola, <?= $_SESSION['nombre'] ?></span>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="fas fa-user-circle fa-2x"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-light fade" style="min-width: auto;">
-                                <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
-                                <li><a class="dropdown-item" href="/pedidos.html">Pedidos</a></li>
-                                <li><a class="dropdown-item"
-                                        href="/Direcciones.php?id=<?php echo $_SESSION['id'] ?>">Direcciones</a></li>
-                                <li><a class="dropdown-item"
-                                        href="/DetallesCuenta.php?id=<?php echo $_SESSION['id'] ?>">Detalles de
-                                        Cuenta</a></li>
-                                <li><a class="dropdown-item" href="/logout.php">Salir</a></li>
-                                <?php endif; ?>
-                            </ul>
-                        </li>
-                        <?php endif; ?>
-                        <?php if (!isset($_SESSION['login'])): ?>
-                        <li class="nav-item">
-                            <a href="login.php" class="nav-link">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="registro.php" class="nav-link">Registro</a>
-                        </li>
-                        <?php endif; ?>
-                    </ul>
+                        <ul class="navbar-nav mb-2 mb-lg-0" style="margin-right: 10rem;">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../carrito.php">
+                                    <i class="fas fa-shopping-cart fa-2x"></i>
+                                    <?php
+                                    $cantidadCarrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0;
+                                    ?>
+                                    <span class="badge bg-danger"><?php echo $cantidadCarrito; ?></span>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fas fa-user-circle fa-2x"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-light fade" style="min-width: auto;">
+                                    <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
+                                    <li><a class="dropdown-item" href="/pedidos.html">Pedidos</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="/Direcciones.php?id=<?php echo $_SESSION['id'] ?>">Direcciones</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                            href="/DetallesCuenta.php?id=<?php echo $_SESSION['id'] ?>">Detalles de
+                                            Cuenta</a></li>
+                                    <li><a class="dropdown-item" href="/logout.php">Salir</a></li>
+                                    <?php endif; ?>
+                                </ul>
+                            </li>
+                            <?php endif; ?>
+                            <?php if (!isset($_SESSION['login'])): ?>
+                            <li class="nav-item">
+                                <a href="login.php" class="nav-link">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="registro.php" class="nav-link">Registro</a>
+                            </li>
+                            <?php endif; ?>
+                        </ul>
 
                 </div>
             </div>
