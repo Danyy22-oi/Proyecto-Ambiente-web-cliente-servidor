@@ -435,3 +435,13 @@ ALTER TABLE `usuario`
   ADD CONSTRAINT `FK_USUARIO_ROL` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
+
+--insersion de nuevo usuario con rol admin
+INSERT INTO `usuario` (`nombre`, `apellido`, `correo`, `telefono`, `contrasena`, `id_rol`) 
+VALUES ('Tiffany', 'Arroyo Arias', 'tdani22aaa@gmail.com', '61909786', '123', 1);
+
+
+--dar rol a el usuario nuevo con id_usuario 3
+UPDATE usuario
+SET id_rol = 1
+WHERE id_usuario = 3;
