@@ -22,6 +22,7 @@ include_once "include/templates/header.php";
                             <th scope="col">Nombre</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Imagen</th>
+                            <th scope="col">Talla</th>
                             <th scope="col">Acción</th>
                         </tr>
                     </thead>
@@ -33,6 +34,7 @@ include_once "include/templates/header.php";
                             <td><?php echo $producto['nombre']; ?></td>
                             <td>₡<?php echo $producto['precio']; ?></td>
                             <td><img src="<?php echo $producto['imagen']; ?>" style="width: 100px; height: 100px;"></td>
+                            <td><?php echo $producto['talla']; ?></td>
                             <td>
                                 <form method="post">
                                     <input type="hidden" name="eliminar_producto" value="<?php echo $key; ?>">
@@ -63,7 +65,8 @@ include_once "include/templates/header.php";
                 <br>
                 <?php
                 } else {
-                    echo "<p class='text-center'>No hay productos en el carrito.</p>";
+                    echo "<br>";
+                    echo "<p class='text-center'>No hay productos en el carrito.<h3></p>";
                 }
                 ?>
             </div>

@@ -75,7 +75,7 @@
 }
 
 .custom-margin {
-    margin-right: 2rem;
+    margin-right: 5px;
 }
 
 .navbar-nav .nav-link {
@@ -97,9 +97,9 @@
     height: 20px;
 }
 
-.subCategoria-Menu{
+/* .subCategoria-Menu{
 
-}
+} */
 .subCategoria-Menu:hover{
     color: var(--principal);
 }
@@ -107,4 +107,8 @@
 .required {
     color: red; 
     margin-left: 5px; 
+}
+
+main{
+    min-height: calc(100vh - 101.37px - 417.34px);
 }

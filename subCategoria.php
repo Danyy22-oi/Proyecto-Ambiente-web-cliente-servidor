@@ -14,13 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (EliminarSubCategoria($id)) {
                 header("Location: subCategoria.php");
             } else {
-                echo "<div class='alert alert-danger' role='alert'>Error al eliminar la subcategoria, tiene productos relacionados.</div>";
+                $errores[] = "Error al eliminar la subcategoría, tiene productos relacionados.";
             }
         } else {
-            echo "<div class='alert alert-danger' role='alert'>ID de subcategoria no recibido.</div>";
+            $errores[] = "ID de subcategoría no recibido.";
         }
     }
 }
+
 include_once 'include/templates/header.php';
 ?>
 
@@ -32,41 +33,39 @@ include_once 'include/templates/header.php';
             </a>
         </div>
         <div>
-            <h2>Sub categorias</h2>
+            <h2>Sub categorías</h2>
             <?php if (!empty($subCategorias)) : ?>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID Subcategoria</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Status</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($subCategorias as $subCategoria) : ?>
-                            <tr>
-                                <td><?= $subCategoria['id_SubCategoria'] ?></td>
-                                <td><?= $subCategoria['nombre'] ?></td>
-                                <td><?= $subCategoria['descripcion'] ?></td>
-                                <td><?= $subCategoria['status'] ? 'Activo' : 'Inactivo' ?></td>
-                                <td>
-                                    <a href="actualizarSubCategoria.php?id=<?= $subCategoria['id_SubCategoria'] ?>" class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
-                                    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" style="display: inline;">
-                                        <input type="hidden" name="id" value="<?= $subCategoria['id_SubCategoria'] ?>">
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar esta subcategoria?');">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <input type="hidden" name="action" value="eliminar_SubCategoria">
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+            <table class="table">
+                <thead style="text-align: center;">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($subCategorias as $subCategoria) : ?>
+                    <tr>
+                        <td><?= $subCategoria['nombre'] ?></td>
+                        <td><?= $subCategoria['descripcion'] ?></td>
+                        <td style="text-align: center;">
+                            <a href="actualizarSubCategoria.php?id=<?= $subCategoria['id_SubCategoria'] ?>"
+                                class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
+                            <form method="post" style="display: inline;">
+                                <input type="hidden" name="id" value="<?= $subCategoria['id_SubCategoria'] ?>">
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('¿Está seguro de que desea eliminar esta subcategoría?');">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                                <input type="hidden" name="action" value="eliminar_SubCategoria">
+                            </form>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
             <?php else : ?>
-                <p>No hay registros de subcategorias.</p>
+            <p>No hay registros de subcategorías.</p>
             <?php endif; ?>
         </div>
     </div>

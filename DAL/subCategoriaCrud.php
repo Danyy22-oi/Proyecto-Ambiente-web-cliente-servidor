@@ -48,16 +48,16 @@ function getObject($sql){
 }
 
 
-function agregarSubCategoria($pnombre, $pid_producto) {
+function agregarSubCategoria($pnombre, $pdescripcion) {
     try {
         $oConexion = conectarDb();
 
         if(mysqli_set_charset($oConexion, "utf8")){
-            $stmt = $oConexion->prepare("INSERT INTO subcategoria (nombre, id_producto) VALUES (?, ?)");
-            $stmt->bind_param("si", $inombre, $iid_producto);
+            $stmt = $oConexion->prepare("INSERT INTO subcategoria (nombre, descripcion) VALUES (?, ?)");
+            $stmt->bind_param("ss", $inombre, $idescripcion);
 
             $inombre = $pnombre;
-            $iid_producto = $pid_producto;
+            $idescripcion = $pdescripcion;
 
             if ($stmt->execute()){
                 return true;
@@ -74,16 +74,16 @@ function agregarSubCategoria($pnombre, $pid_producto) {
     }
 }
 
-function EditarSubCategoria($pid_SubCategoria, $pnombre, $pid_producto) {
+function EditarSubCategoria($pid_SubCategoria, $pnombre, $pdescripcion) {
     try {
         $oConexion = conectarDb();
 
         if(mysqli_set_charset($oConexion, "utf8")){
-            $stmt = $oConexion->prepare("UPDATE subcategoria SET nombre = ?, id_producto = ? WHERE id_SubCategoria = ?");
-            $stmt->bind_param("sii", $inombre, $iid_producto, $pid_SubCategoria);
+            $stmt = $oConexion->prepare("UPDATE subcategoria SET nombre = ?, descripcion = ? WHERE id_SubCategoria = ?");
+            $stmt->bind_param("ssi", $inombre, $idescripcion, $pid_SubCategoria);
 
             $inombre = $pnombre;
-            $iid_producto = $pid_producto;
+            $idescripcion = $pdescripcion;
 
             if ($stmt->execute()){
                 return true;

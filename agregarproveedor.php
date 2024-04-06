@@ -1,17 +1,22 @@
 <?php
-
 require_once "DAL/proveedoresCrud.php";
 
-$proveedores = getArray("SELECT * FROM proveedores");
+$errores = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'];
     $logo = $_POST['logo'];
 
-    if (AgregarProveedores($nombre, $logo)) {
-        echo "<div class='alert alert-success' role='alert'>Proveedor agregado correctamente.</div>";
-    } else {
-        echo "<div class='alert alert-danger' role='alert'>Error al agregar el proveedor.</div>";
+    if (empty($nombre)) {
+        $errores['nombre'] = "Por favor ingrese el nombre del proveedor.";
+    }
+
+    if (empty($errores)) {
+        if (AgregarProveedores($nombre, $logo)) {
+            echo "<div class='alert alert-success' role='alert'>Proveedor agregado correctamente.</div>";
+        } else {
+            echo "<div class='alert alert-danger' role='alert'>Error al agregar el proveedor.</div>";
+        }
     }
 }
 include_once 'include/templates/header.php';
@@ -22,8 +27,9 @@ include_once 'include/templates/header.php';
         <h2>Nuevo Proveedor</h2>
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <div class="form-group">
-                <label for="nombre">Nombre</label>
+                <label for="nombre">Nombre<span class="required">*</span></label>
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" maxlength="255">
+                <div class="text-danger"><?php echo isset($errores['nombre']) ? $errores['nombre'] : ''; ?></div>
             </div>
             <br>
             <div class="form-group">
@@ -41,5 +47,3 @@ include_once 'include/templates/header.php';
 <?php
 include_once 'include/templates/footer.php';
 ?>
-
-</html>

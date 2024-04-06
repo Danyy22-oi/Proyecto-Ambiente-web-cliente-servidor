@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include_once "../include/templates/header.php";
 ?>
 <main>
-    <div>
+    <div class="container">
         <br>
         <h2>Usuarios
         </h2>
@@ -37,7 +37,7 @@ include_once "../include/templates/header.php";
         $myArray = getArray($elSQL);
         ?>
     </div>
-    <div>
+    <div class="container">
         <table class="table">
             <thead>
                 <tr>
@@ -50,10 +50,10 @@ include_once "../include/templates/header.php";
                 </tr>
             </thead>
             <tbody>
-            <?php
+                <?php
                 if (!empty($myArray)) {
                     foreach ($myArray as $usuario) {
-                        if ($_SESSION['nombre'] != $usuario['nombre']) { // Verifica si el nombre de sesión no coincide con el nombre del usuario actual
+                        if ($_SESSION['nombre'] != $usuario['nombre']) { 
                             echo "<tr>";
                             echo "<td>" . $usuario['nombre'] . "</td>";
                             echo "<td>" . $usuario['apellido'] . "</td>";
@@ -83,5 +83,4 @@ include_once "../include/templates/header.php";
 <?php
 include_once "../include/templates/footer.php";
 ?>
-
 </html>

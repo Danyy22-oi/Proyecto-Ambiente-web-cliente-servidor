@@ -54,7 +54,7 @@ include "../../include/templates/header.php";
         <form method="POST">
         <input type="text" name="id" value="<?php  echo $id ?>" hidden>
             <div class="form-group">
-                <label for="descripcion">Nombre de la Categoría</label>
+                <label for="descripcion">Nombre de la Categoría<span class="required">*</span></label>
                 <input type="text" class="form-control" id="descripcion" name="descripcion" maxlength="255" value="<?php echo $descripcion?>">
             </div>
             <div class="form-group">

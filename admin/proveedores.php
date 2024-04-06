@@ -40,6 +40,7 @@ include_once '../include/templates/header.php';
                 <tr>
                     <th class="max">Nombre</th>
                     <th>Logo</th>
+                    <th>Acciones</th>
                 </tr>
                 <?php if (!empty($proveedores)) { ?>
 

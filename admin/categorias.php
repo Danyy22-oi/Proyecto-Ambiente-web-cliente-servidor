@@ -25,10 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include_once "../include/templates/header.php";
 ?>
 <main>
-
     <div class="container">
         <div>
-
             <div style="float: right;">
                 <a href="/admin/cruds/agregarCategoria.php">
                     <button type="button" class="btn btn-success color-boton ">Añadir Categoria</button>
@@ -45,17 +43,15 @@ include_once "../include/templates/header.php";
             <p class="text-success"><?= $ingreso == 3 ? "Se agregó la categoría correctamente" : ""; ?></p>
             <?php if (!empty($categorias)) : ?>
                 <table class="table">
-                    <thead>
+                    <thead style="text-align: center;">
                         <tr>
-                            <th>Id</th>
-                            <th>Descripcion</th>
+                            <th>Nombre</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($categorias as $categoria) : ?>
-                            <tr>
-                                <td><?php echo $categoria['Id_Categoria']; ?></td>
+                            <tr style="text-align: center;">
                                 <td><?php echo $categoria['Descripcion']; ?></td>
                                 <td>
                                     <a href="cruds/actualizarCategoria.php?id=<?= $categoria['Id_Categoria'] ?>" class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
@@ -82,5 +78,4 @@ include_once "../include/templates/header.php";
 </main>
 <?php
 include_once "../include/templates/footer.php";
-
 ?>
