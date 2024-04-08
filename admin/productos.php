@@ -4,10 +4,11 @@ include_once "../include/functions/autenticado.php";
 verificarAutenticacion();
 require_once "../DAL/productosCrud.php";
 
-$elSQL = "SELECT p.*, GROUP_CONCAT(CONCAT(t.Descripcion, ': ', pt.Cantidad) ORDER BY t.Id_Talla SEPARATOR ', ') AS TallasConCantidad
+$elSQL = "SELECT p.*, prov.Nombre AS Proveedor, GROUP_CONCAT(CONCAT(t.Descripcion, ': ', pt.Cantidad) ORDER BY t.Id_Talla SEPARATOR ', ') AS TallasConCantidad
           FROM productos p
           LEFT JOIN producto_talla pt ON p.Id_Producto = pt.Id_Producto
           LEFT JOIN tallas t ON pt.Id_Talla = t.Id_Talla
+          LEFT JOIN proveedores prov ON p.Id_Proveedor = prov.Id_Proveedor
           GROUP BY p.Id_Producto";
 
 $productos = getArray($elSQL);
@@ -45,6 +46,7 @@ include_once '../include/templates/header.php';
                     <th>Categoría</th>
                     <th>Precio</th>
                     <th class="max">Descripción</th>
+                    <th>Proveedor</th>
                     <th>Imagen</th>
                     <th>Tallas y Cantidades Disponibles</th>
                     <th>Acciones</th>
@@ -74,6 +76,7 @@ include_once '../include/templates/header.php';
                     </td>
                     <td class="text-center"><?= $producto['Precio'] ?></td>
                     <td style="max-width: 200px;"><?= $producto['Descripcion'] ?></td>
+                    <td class="text-center"><?= $producto['Proveedor'] ?></td>
                     <td class="text-center"><img class="logo" src="../img/productos/<?php echo $producto['Imagen']?>"
                             alt="<?= $producto['Nombre'] ?>"></td>
                     <td style="max-width: 100px;"><?= $producto['TallasConCantidad'] ?></td>
