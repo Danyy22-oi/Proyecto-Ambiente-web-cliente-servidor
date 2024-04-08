@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_SubCategoria'])) {
 
     if ( EditarSubCategoria($id_SubCategoria, $nombre, $descripcion)) {
         echo "<div class='alert alert-success' role='alert'>Subcategoría actualizada correctamente.</div>";
+        header("Location: /subCategoria.php");
     } else {
         echo "<div class='alert alert-danger' role='alert'>Error al actualizar la subcategoría.</div>";
     }

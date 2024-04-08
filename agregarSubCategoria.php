@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($errores)) {
         if (agregarSubCategoria($nombre, $descripcion)) {
             echo "<div class='alert alert-success' role='alert'>Subcategoría agregada correctamente.</div>";
+            header("Location: /subCategoria.php");
         } else {
             echo "<div class='alert alert-danger' role='alert'>Error al agregar la subcategoría.</div>";
         }

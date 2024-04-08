@@ -33,7 +33,7 @@ include_once "include/templates/header.php";
                         <tr>
                             <td><?php echo $producto['nombre']; ?></td>
                             <td>₡<?php echo $producto['precio']; ?></td>
-                            <td><img src="<?php echo $producto['imagen']; ?>" style="width: 100px; height: 100px;"></td>
+                            <td><img src="../img/productos/<?php echo $producto['imagen']?>" style="width: 100px; height: 100px;"></td>
                             <td><?php echo $producto['talla']; ?></td>
                             <td>
                                 <form method="post">

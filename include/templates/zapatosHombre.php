@@ -5,8 +5,8 @@
 <div class="row">
     <?php foreach ($productos as $producto) : ?>
         <div class="col-lg-4 mb-4">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="<?= $producto['Imagen'] ?>" alt="<?= $producto['Nombre'] ?>"></a>
+            <div class="card  card-hover  h-100">
+                <a href="#"><img class="card-img-top" src="../img/productos/<?php echo $producto['Imagen']?>"  alt="<?= $producto['Nombre'] ?>"></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a><?= $producto['Nombre'] ?></a>
@@ -24,5 +24,4 @@
         </div>
     <?php endforeach; ?>
     
-</div>
 </div>

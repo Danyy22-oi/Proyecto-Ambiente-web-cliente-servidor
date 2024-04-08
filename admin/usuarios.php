@@ -35,6 +35,7 @@ include_once "../include/templates/header.php";
         require_once "../DAL/usuariosCrud.php";
         $elSQL = "SELECT id_usuario, nombre, apellido ,correo, telefono, id_rol from usuario";
         $myArray = getArray($elSQL);
+     
         ?>
     </div>
     <div class="container">
@@ -53,7 +54,8 @@ include_once "../include/templates/header.php";
                 <?php
                 if (!empty($myArray)) {
                     foreach ($myArray as $usuario) {
-                        if ($_SESSION['nombre'] != $usuario['nombre']) { 
+                        
+                        if ($_SESSION['nombre'] != $usuario['nombre']) {
                             echo "<tr>";
                             echo "<td>" . $usuario['nombre'] . "</td>";
                             echo "<td>" . $usuario['apellido'] . "</td>";

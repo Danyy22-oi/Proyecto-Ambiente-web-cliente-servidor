@@ -74,7 +74,7 @@ include_once '../include/templates/header.php';
                     </td>
                     <td class="text-center"><?= $producto['Precio'] ?></td>
                     <td style="max-width: 200px;"><?= $producto['Descripcion'] ?></td>
-                    <td class="text-center"><img class="logo" src="<?= $producto['Imagen'] ?>"
+                    <td class="text-center"><img class="logo" src="../img/productos/<?php echo $producto['Imagen']?>"
                             alt="<?= $producto['Nombre'] ?>"></td>
                     <td style="max-width: 100px;"><?= $producto['TallasConCantidad'] ?></td>
                     <td class="text-center">

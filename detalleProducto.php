@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
                 <?php if (isset($producto) && !empty($producto)) : ?>
                 <div class="card">
                     <div style="width: 100%; height: 100%; margin: 0 auto;">
-                        <img src="<?= $producto['Imagen'] ?>" class="card-img-top img-fluid"
-                            alt="<?= $producto['Nombre'] ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="../img/productos/<?php echo $producto['Imagen']?>" class="card-img-top img-fluid" 
+                            alt="<?= $producto['Nombre'] ?>" style="width: 100%; height: 30rem; object-fit: cover;">
                     </div>
                     <div class="card-body">
                         <h3 class="card-title text-center"><?= $producto['Nombre'] ?></h3>

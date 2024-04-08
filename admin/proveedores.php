@@ -49,7 +49,7 @@ include_once '../include/templates/header.php';
                 <?php foreach ($proveedores as $proveedor) { ?>
                     <tr>
                         <td><?= $proveedor['Nombre'] ?></td>
-                        <?php echo "<td><img class= 'logo' src='{$proveedor['Logo']}'></td>"; ?>
+                        <?php echo "<td><img class='logo' src='../img/proovedores/" . $proveedor['Logo'] . "'></td>"; ?>
                         <td>
 
                             <a href="../actualizarproveedores.php?id=<?= $proveedor['Id_Proveedor'] ?>" class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>

@@ -13,8 +13,8 @@ include_once 'include/templates/header.php';
     <div class="row">
         <?php foreach ($productos as $producto): ?>
         <div class="col-lg-4 mb-4">
-            <div class="card h-100">
-                <a href="detalleProducto.php?id=<?= $producto['Id_Producto'] ?>"><img class="card-img-top" src="<?= $producto['Imagen'] ?>"
+            <div class="card card-hover  h-100">
+                <a href="detalleProducto.php?id=<?= $producto['Id_Producto'] ?>"><img class="card-img-top" src="../img/productos/<?php echo $producto['Imagen']?>"
                         alt="<?= $producto['Nombre'] ?>"></a>
                 <div class="card-body">
                     <h4 class="card-title">

@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $nombre = $mySession['Nombre'];
         $logo = $mySession['Logo'];
     } else {
-        
     }
 }
 
@@ -47,14 +46,13 @@ include_once 'include/templates/header.php';
             <input type="hidden" name="Id_Proveedor" value="<?= $id ?>">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="Nombre" name="nombre" placeholder="Nombre" maxlength="255"
-                    value="<?= $nombre ?>">
+                <input type="text" class="form-control" id="Nombre" name="nombre" placeholder="Nombre" maxlength="255" value="<?= $nombre ?>">
             </div>
             <div class="text-danger"><?php echo isset($errores['nombre']) ? $errores['nombre'] : ''; ?></div>
             <br>
             <div class="form-group">
                 <label for="logo">Logo</label>
-                <textarea class="form-control" id="Logo" name="logo" rows="2" maxlength="255"><?= $logo ?></textarea>
+                <input type="file" class="form-control" id="imagen" name="logo">
             </div>
             <br>
             <div>
@@ -63,7 +61,30 @@ include_once 'include/templates/header.php';
         </form>
     </div>
 </main>
+<script>
+    function subirImagen(event) {
 
+        var formData = new FormData();
+        var file = document.getElementById('imagen').files[0];
+        formData.append('imagen', file);
+
+        $.ajax({
+            url: 'subirImagenProovedor.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    }
+
+    $('form').on('submit', subirImagen);
+</script>
 <?php
 include_once 'include/templates/footer.php';
 ?>
