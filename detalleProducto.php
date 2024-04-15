@@ -15,17 +15,27 @@ if (isset($_GET['id'])) {
     WHERE p.Id_Producto = $idProducto
     GROUP BY p.Id_Producto";
 
-$producto = getObject($elSQL);
+    $producto = getObject($elSQL);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
-    if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
+    if (isset($_SESSION['login']) && $_SESSION['login'] === true) {     
+        $IdentificadorProducto = $_POST['id_producto'];
         $nombre_zapato = $_POST['nombre'];
         $precio_zapato = $_POST['precio'];
         $imagen_zapato = $_POST['imagen'];
-        $talla_zapato = $_POST['talla_seleccionada'];
+        $talla_zapato = $_POST['talla_seleccionada']; 
 
-        $_SESSION['carrito'][] = array('nombre' => $nombre_zapato, 'precio' => $precio_zapato, 'imagen' => $imagen_zapato, 'talla' => $talla_zapato);
+        $idTalla = obtenerIdTalla($talla_zapato); 
+
+        $_SESSION['carrito'][] = array(
+            'id_producto' => $IdentificadorProducto,
+            'nombre' => $nombre_zapato,
+            'precio' => $precio_zapato,
+            'imagen' => $imagen_zapato,
+            'id_talla' => $idTalla, 
+            'talla_seleccionada' => $talla_zapato 
+        );
         $mensaje = 'Producto añadido al carrito.';
     } else {
         header('Location: login.php');
@@ -49,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
                 <?php if (isset($producto) && !empty($producto)) : ?>
                 <div class="card">
                     <div style="width: 100%; height: 100%; margin: 0 auto;">
-                        <img src="../img/productos/<?php echo $producto['Imagen']?>" class="card-img-top img-fluid" 
+                        <img src="../img/productos/<?php echo $producto['Imagen']?>" class="card-img-top img-fluid"
                             alt="<?= $producto['Nombre'] ?>" style="width: 100%; height: 30rem; object-fit: cover;">
                     </div>
                     <div class="card-body">
@@ -65,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
                             foreach ($tallasConCantidad as $tallaCantidad) {
                                 list($talla, $cantidad) = explode(': ', $tallaCantidad);
                         ?>
-                        <div class="form-check">
+                        <div class="form-check" <?= $cantidad <= 0 ? 'style="display: none;"' : '' ?>>
                             <input class="form-check-input" type="radio" name="talla_seleccionada" id="<?= $talla ?>"
                                 value="<?= $talla ?>">
                             <label class="form-check-label" for="<?= $talla ?>">
@@ -80,6 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['agregar_carrito'])) {
                         ?>
                         <div class="text-center">
                             <form method="post" id="product_form">
+                                <input type="hidden" name="id_producto" value="<?php echo $producto['Id_Producto']; ?>">
                                 <input type="hidden" name="nombre" value="<?= $producto['Nombre'] ?>">
                                 <input type="hidden" name="precio" value="<?= $producto['Precio'] ?>">
                                 <input type="hidden" name="imagen" value="<?= $producto['Imagen'] ?>">

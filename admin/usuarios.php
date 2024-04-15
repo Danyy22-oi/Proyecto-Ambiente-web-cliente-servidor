@@ -7,7 +7,6 @@ include_once "../include/functions/autenticado.php";
 
 verificarAutenticacion();
 
-
 $ingreso = recogeGET("ingreso");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

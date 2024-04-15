@@ -86,7 +86,8 @@ if (session_status() == PHP_SESSION_NONE) {
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-light fade" style="min-width: auto;">
                                     <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
-                                    <li><a class="dropdown-item" href="/pedidos.html">Pedidos</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="/pedidos.php?id=<?php echo $_SESSION['id']; ?>">Pedidos</a></li>
                                     <li><a class="dropdown-item"
                                             href="/Direcciones.php?id=<?php echo $_SESSION['id'] ?>">Direcciones</a>
                                     </li>

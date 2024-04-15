@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include_once "include/templates/header.php";
+
 ?>
 
 <main>
@@ -32,9 +33,10 @@ include_once "include/templates/header.php";
                         ?>
                         <tr>
                             <td><?php echo $producto['nombre']; ?></td>
+                            <td><?php echo $producto['nombre']; ?></td>
                             <td>₡<?php echo $producto['precio']; ?></td>
                             <td><img src="../img/productos/<?php echo $producto['imagen']?>" style="width: 100px; height: 100px;"></td>
-                            <td><?php echo $producto['talla']; ?></td>
+                            <td><?php echo $producto['talla_seleccionada']; ?></td>
                             <td>
                                 <form method="post">
                                     <input type="hidden" name="eliminar_producto" value="<?php echo $key; ?>">
@@ -56,7 +58,7 @@ include_once "include/templates/header.php";
                         <input type="hidden" name="limpiar_carrito" value="1">
                         <button type="submit" name="submit" class="btn btn-danger">Limpiar carrito</button>
                     </form>
-                    <form method="post" style="display: inline-block;">
+                    <form method="post" action="pedidos.php" style="display: inline-block;">
                         <button style="background-color: #048088;" type="submit" name="agregar_carrito"
                             class="btn btn-primary">Finalizar Compra</button>
                     </form>

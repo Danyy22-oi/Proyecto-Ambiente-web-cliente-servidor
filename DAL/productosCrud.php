@@ -139,6 +139,32 @@ function obtenerIdProducto() {
     return $idProducto;
 }
 
+function obtenerIdTalla($talla) {
+    $idTalla = null;
+    try {
+        $oConexion = conectarDb();
+
+        if (mysqli_set_charset($oConexion, "utf8")) {
+            $stmt = $oConexion->prepare("SELECT Id_Talla FROM tallas WHERE Descripcion = ?");
+            $stmt->bind_param("s", $talla);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows === 1) {
+                $row = $result->fetch_assoc();
+                $idTalla = $row['Id_Talla'];
+            }
+            $stmt->close();
+        }
+    } catch (\Throwable $th) {
+        echo $th;
+    } finally {
+        Desconectar($oConexion);
+    }
+    return $idTalla;
+}
+
+
 function AgregarProductoTalla($idProducto, $idTalla, $cantidad) {
     $retorno = false;
 
@@ -205,6 +231,33 @@ function EditarProductoTalla($idProducto, $idTalla, $cantidad) {
     return $retorno;
 }
 
+function RestarCantidadProductoCarrito($idProducto, $idTalla) {
+    $retorno = false;
+
+    try {
+        $oConexion = conectarDb();
+
+        if (mysqli_set_charset($oConexion, "utf8")) {
+            $stmtTallas = $oConexion->prepare("UPDATE producto_talla SET Cantidad = Cantidad - 1 WHERE Id_Producto = ? AND Id_Talla = ?");
+            $stmtTallas->bind_param("ii", $idProducto, $idTalla);
+
+            if ($stmtTallas->execute()) {
+                $stmtTallas->close();
+                $retorno = true;
+            } else {
+                echo "Error al actualizar la cantidad en la tabla producto_talla.";
+            }
+        }
+    } catch (\Throwable $th) {
+        echo $th;
+    } finally {
+        Desconectar($oConexion);
+    }
+
+    return $retorno;
+}
+
+
 function EliminarProducto($pId) {
     $retorno = false;
 
@@ -229,6 +282,32 @@ function EliminarProducto($pId) {
         Desconectar($oConexion);
     }
 
+    return $retorno;
+}
+
+function IngresarPedido($productos, $idUsuario){
+    $retorno = false;
+    try {
+        $oConexion = conectarDb();
+        if (mysqli_set_charset($oConexion, "utf8")) {
+            $stmt = $oConexion->prepare("INSERT INTO facturas (Id_Producto, Fecha, Precio, id_usuario) VALUES (?, NOW(), ?, ?)");
+            
+            foreach ($productos as $producto) {
+                $idProducto = $producto['id_producto'];
+                $precio = $producto['precio'];
+                $stmt->bind_param("sdi", $idProducto, $precio, $idUsuario);
+
+                if ($stmt->execute()) {
+                    $retorno = true;
+                }
+            }
+        }
+
+    }catch (\Throwable $th) {
+        error_log("Error al guardar el pedido: " . $th->getMessage());
+    }finally{
+        Desconectar($oConexion);
+    }
     return $retorno;
 }
 
