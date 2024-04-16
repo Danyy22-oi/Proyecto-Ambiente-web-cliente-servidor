@@ -5,6 +5,13 @@ include "include/functions/recoge.php";
 $conexion = conectarDb();
 
 
+require_once "include/functions/autenticado.php";
+$auth = estaAutenticado();
+if (!$auth) {
+    header('Location: /');
+}
+
+
 if (!$conexion) {
     die("Error al conectar a la base de datos: " . mysqli_connect_error());
 }

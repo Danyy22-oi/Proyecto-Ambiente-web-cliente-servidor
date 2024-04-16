@@ -1,15 +1,19 @@
 <?php
-function verificarAutenticacion()
-{
+function estaAutenticado() : bool {
     session_start();
-    if (!isset($_SESSION['login']) || !$_SESSION['login']) {
 
-        header('Location: /login.php');
-        exit();
+    $auth = $_SESSION['login'];
+    if($auth) {
+        return true;
     }
-    if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== "1") {
+    return false;
+}
 
-        header('Location: /index.php');
-        exit();
+function estaAutenticadoAdmin() : bool {
+    session_start();
+    $auth = $_SESSION['rol'];
+    if($auth == 1) {
+        return true;
     }
+    return false;
 }

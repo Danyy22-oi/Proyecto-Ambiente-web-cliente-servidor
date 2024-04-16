@@ -15,8 +15,7 @@ if (!$auth) {
     <div>
         <form id="input_form">
             <div>
-                <input type="text" name="id" id="id" hidden>
-
+                <input type="text" name="id" id="id" value="<?php echo $_SESSION['id'] ?>" hidden>
                 <div class="mb-3">
                     <label for="direccion" class="form-label">Direccion 1</label>
                     <input type="text" class="form-control" name="direccion" id="direccion">
@@ -27,18 +26,57 @@ if (!$auth) {
                 </div>
             </div>
 
-            <button id="submit" type="submit" class="btn btn-primary color-boton mb-2">Actualizar las direcciones de envio</button>
-            <div id="no-direcciones"><span>No tienes una direccion? agrega una</span>
-
-                <a href="Direcciones_AgregarForm.php?id=<?php echo $_SESSION['id'] ?>"> aquí</a>
-            </div>
+            <button id="submit" type="submit" class="btn btn-primary color-boton mb-2">Agregar las direcciones de envio</button>
         </form>
     </div>
 </main>
 
-<script src="js/detallesDireccion.js"> </script>
 <script>
     $(document).ready(function() {
+
+        const url = 'obtenerDirecciones.php';
+
+
+        function obtenerInformacionDireccion() {
+            fetch(url)
+                .then(function(resultado) {
+                    return resultado.json();
+                })
+                .then(function(datos) {
+                    if (datos.length == 0) {
+                       
+                    } else {
+
+                        if (datos.length == 1) {
+                            mostrarDireccion(datos);
+                            var userId = $('#id').val();
+                            window.location.href = 'Direcciones.php?id=' + userId;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
+        function mostrarDireccion(arregloDireccion) {
+            arregloDireccion.forEach(function(direccion) {
+
+                //id
+                const id = document.querySelector("#id");
+                id.value = direccion.id_direccion
+                //direccion1
+                const direccion1 = document.querySelector("#direccion");
+                direccion1.value = direccion.direccion_1;
+                //direccion2
+                const direccion2 = document.querySelector('#direccion2');
+                direccion2.value = direccion.direccio_2;
+            });
+        }
+        obtenerInformacionDireccion();
+
+
+
         $('#input_form').on('submit', function(e) {
             e.preventDefault();
             var errores = [];
@@ -52,10 +90,11 @@ if (!$auth) {
             if (errores.length === 0) {
                 var formData = $(this).serialize();
                 $.ajax({
-                    url: 'actualizarDireccion.php',
+                    url: 'agregarDireccion.php',
                     type: 'POST',
                     data: formData,
                     beforeSend: function(respuesta) {
+                        console.log(formData);
                         console.log('Enviando datos...');
                     },
                     success: function(respuesta) {
@@ -63,8 +102,12 @@ if (!$auth) {
                         console.log('Datos recibidos');
                         var mensajesError = $('#mensajes-error');
                         mensajesError.html('');
-                        var successMessage = $('<p>').text('Datos actualizados correctamente').addClass('text-success');
+                        var successMessage = $('<p>').text('Datos agregados correctamente').addClass('text-success');
                         mensajesError.append(successMessage);
+
+
+                        var userId = $('#id').val();
+                        window.location.href = 'Direcciones.php?id=' + userId;
                     },
                     error: function() {
                         console.log('Error al enviar los datos');

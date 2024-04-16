@@ -1,4 +1,15 @@
 <?php
+
+require_once "include/functions/autenticado.php";
+$auth = estaAutenticado();
+if (!$auth) {
+    header('Location: /');
+}
+$authADmin = estaAutenticadoAdmin();
+if(!$authADmin){
+    header('Location: /');
+}
+
 $ruta = 'img/proovedores/';
 if (isset($_FILES["imagen"]) && $_FILES["imagen"]["error"] == 0) {
     $allowed_extensions = array("jpg", "jpeg", "png", "gif");

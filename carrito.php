@@ -1,4 +1,15 @@
 <?php 
+
+
+
+require_once "include/functions/autenticado.php";
+$auth = estaAutenticado();
+if (!$auth) {
+    header('Location: /');
+}
+
+
+
 session_start();
 include_once "include/templates/header.php";
 

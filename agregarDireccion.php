@@ -3,13 +3,12 @@
 include 'DAL/conexion.php';
 include 'include/functions/recoge.php';
 
-
+    
 require_once "include/functions/autenticado.php";
 $auth = estaAutenticado();
 if (!$auth) {
     header('Location: /');
 }
-
 $conexion = conectarDb();
 
 if (!$conexion) {
@@ -20,14 +19,15 @@ $id = recogePost('id');
 $direccion = recogePost('direccion');
 $direccion2 = recogePost('direccion2');
 
-$stmt = mysqli_prepare($conexion, "UPDATE direccion set direccion_1 = ?, direccio_2 = ? where id_direccion = ?");
+
+$stmt = mysqli_prepare($conexion, "INSERT INTO direccion (direccion_1, direccio_2, id_usuario) VALUES (?, ?, ?)");
 mysqli_stmt_bind_param($stmt, "ssi", $direccion, $direccion2, $id);
 mysqli_stmt_execute($stmt);
 
 if (mysqli_stmt_affected_rows($stmt) > 0) {
-    echo "Datos actualizados correctamente";
+    echo "Datos agregados correctamente";
 } else {
-    echo "Error al actualizar los datos: " . mysqli_error($conexion);
+    echo "Error al agregar los datos: " . mysqli_error($conexion);
 }
 
 

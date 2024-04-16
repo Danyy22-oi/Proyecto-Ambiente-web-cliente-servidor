@@ -1,7 +1,16 @@
 <?php
 include_once "../include/functions/autenticado.php";
 
-verificarAutenticacion();
+$auth = estaAutenticado();
+if(!$auth){
+    header('Location: /');
+}
+
+$authAdmin = estaAutenticadoAdmin();
+if(!$authAdmin){
+    header('Location: /');
+}
+
 require_once "../DAL/productosCrud.php";
 
 $elSQL = "SELECT p.*, prov.Nombre AS Proveedor, GROUP_CONCAT(CONCAT(t.Descripcion, ': ', pt.Cantidad) ORDER BY t.Id_Talla SEPARATOR ', ') AS TallasConCantidad

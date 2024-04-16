@@ -1,5 +1,19 @@
 <?php
 
+
+
+
+require_once "include/functions/autenticado.php";
+$auth = estaAutenticado();
+if (!$auth) {
+    header('Location: /');
+}
+
+$authAdmin = estaAutenticadoAdmin();
+if (!$authAdmin) {
+    header('Location: /');
+}
+
 require_once "DAL/SubCategoriaCrud.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_SubCategoria'])) {

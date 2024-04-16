@@ -2,6 +2,12 @@
 <html lang="en">
 <?php
 include_once "include/templates/header.php";
+include_once "include/functions/autenticado.php";
+$auth = estaAutenticado();
+if ($auth) {
+    header('Location: /');
+}
+
 ?>
 <main>
     <div>

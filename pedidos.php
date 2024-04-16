@@ -1,7 +1,12 @@
 <?php
 include_once "include/templates/header.php";
 require_once "DAL/productosCrud.php";
+include_once "include/functions/autenticado.php";
 
+$auth = estaAutenticado();
+if (!$auth) {
+    header('Location: /');
+}
 function existeProducto($idProducto) {
     try {
         $oConexion = conectarDb();

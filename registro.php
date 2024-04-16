@@ -1,5 +1,15 @@
-
 <?php
+
+
+
+
+include_once "include/functions/autenticado.php";
+
+$auth = estaAutenticado();
+if ($auth) {
+    header('Location: /');
+}
+
 
 $errores = array();
 $nombre = $apellido = $correo = $telefono = '';

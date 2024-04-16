@@ -1,4 +1,17 @@
 <?php
+
+
+require_once "include/functions/autenticado.php";
+$auth = estaAutenticado();
+if (!$auth) {
+    header('Location: /');
+}
+
+$authAdmin = estaAutenticadoAdmin();
+if (!$authAdmin) {
+    header('Location: /');
+}
+
 require_once "DAL/SubCategoriaCrud.php";
 
 $errores = [];
@@ -52,5 +65,6 @@ include_once 'include/templates/header.php';
 </main>
 
 <?php
+
 include_once 'include/templates/footer.php';
 ?>

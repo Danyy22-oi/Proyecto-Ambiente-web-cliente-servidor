@@ -1,7 +1,17 @@
 <?php
 include_once "../include/functions/autenticado.php";
+include_once "../include/functions/autenticado.php";
 
-verificarAutenticacion();
+$auth = estaAutenticado();
+if(!$auth){
+    header('Location: /');
+}
+
+$authAdmin = estaAutenticadoAdmin();
+if(!$authAdmin){
+    header('Location: /');
+}
+
 require_once "../DAL/proveedoresCrud.php";
 
 $elSQL = "SELECT * FROM proveedores";

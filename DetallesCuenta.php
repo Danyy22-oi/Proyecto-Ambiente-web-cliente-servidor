@@ -2,6 +2,11 @@
 
 include 'include/templates/header.php';
 
+include_once "include/functions/autenticado.php";
+$auth = estaAutenticado();
+if (!$auth) {
+    header('Location: /');
+}
 ?>
 
 <main class="container mt-4">
@@ -31,7 +36,7 @@ include 'include/templates/header.php';
             <div>
                 <h2>Actualizar Contraseña</h2>
                 <p class="text-primary">Deja esta parte en blanco si no deseas cambiar la Contraseña</p>
-               
+
                 <div class="mb-3">
                     <label for="newPassword" class="form-label">Nueva Contraseña</label>
                     <input type="password" class="form-control" id="newPassword" name="newPassword" value="">
@@ -52,17 +57,17 @@ include 'include/templates/header.php';
 <script>
     $(document).ready(function() {
         $("#input_form").on('submit', function(e) {
-            e.preventDefault(); 
+            e.preventDefault();
 
 
             var errores = [];
 
             let nombre = $('#nombre').val().trim();
-          
+
             let apellido = $('#apellido').val().trim();
-      
+
             let correo = $('#correo').val().trim();
-          
+
             let telefono = $('#telefono').val().trim();
 
             let password = $('#password').val()
@@ -90,7 +95,7 @@ include 'include/templates/header.php';
             }
 
             if (errores.length === 0) {
-                var formData = $(this).serialize(); 
+                var formData = $(this).serialize();
 
                 $.ajax({
                     url: 'actualizarDatos.php',
@@ -104,7 +109,7 @@ include 'include/templates/header.php';
                         var mensajesError = $('#mensajes-error');
                         mensajesError.html('');
                         var successMessage = $('<p>').text('Datos actualizados correctamente').addClass('text-success');
-                      
+
                         mensajesError.append(successMessage);
 
                     },

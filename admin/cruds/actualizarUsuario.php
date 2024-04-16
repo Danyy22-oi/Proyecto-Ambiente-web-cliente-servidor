@@ -2,7 +2,16 @@
 <?php
 include_once "../../include/functions/autenticado.php";
 
-verificarAutenticacion();
+$auth = estaAutenticado();
+if(!$auth){
+    header('Location: /');
+}
+
+$authAdmin = estaAutenticadoAdmin();
+if(!$authAdmin){
+    header('Location: /');
+}
+
 $errores = array();
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
